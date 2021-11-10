@@ -18,6 +18,39 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\general\audiomanager\AudioManager.cpp" />
+    <ClCompile Include="src\general\button\Button.cpp" />
+    <ClCompile Include="src\general\hud\HUD.cpp" />
+    <ClCompile Include="src\general\text\Text.cpp" />
+    <ClCompile Include="src\general\vec2\vec2.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\manager\GameManager.cpp" />
+    <ClCompile Include="src\scenes\credits\Credits.cpp" />
+    <ClCompile Include="src\scenes\endscreen\EndGameScreen.cpp" />
+    <ClCompile Include="src\scenes\gameplay\Gameplay.cpp" />
+    <ClCompile Include="src\scenes\gameplay\inGamePause.cpp" />
+    <ClCompile Include="src\scenes\gameplay\Player.cpp" />
+    <ClCompile Include="src\scenes\menu\Menu.cpp" />
+    <ClCompile Include="src\scenes\rules\Rules.cpp" />
+    <ClCompile Include="src\scenes\SceneManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\general\audiomanager\AudioManager.h" />
+    <ClInclude Include="src\general\button\Button.h" />
+    <ClInclude Include="src\general\hud\HUD.h" />
+    <ClInclude Include="src\general\text\Text.h" />
+    <ClInclude Include="src\general\vec2\vec2.h" />
+    <ClInclude Include="src\manager\GameManager.h" />
+    <ClInclude Include="src\scenes\credits\Credits.h" />
+    <ClInclude Include="src\scenes\endscreen\EndGameScreen.h" />
+    <ClInclude Include="src\scenes\gameplay\Gameplay.h" />
+    <ClInclude Include="src\scenes\gameplay\inGamePause.h" />
+    <ClInclude Include="src\scenes\gameplay\Player.h" />
+    <ClInclude Include="src\scenes\menu\Menu.h" />
+    <ClInclude Include="src\scenes\rules\Rules.h" />
+    <ClInclude Include="src\scenes\SceneManager.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -138,37 +171,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="AudioManager.cpp" />
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Credits.cpp" />
-    <ClCompile Include="EndGameScreen.cpp" />
-    <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="Gameplay.cpp" />
-    <ClCompile Include="HUD.cpp" />
-    <ClCompile Include="inGamePause.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Rules.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Text.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AudioManager.h" />
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="Credits.h" />
-    <ClInclude Include="EndGameScreen.h" />
-    <ClInclude Include="GameManager.h" />
-    <ClInclude Include="Gameplay.h" />
-    <ClInclude Include="HUD.h" />
-    <ClInclude Include="inGamePause.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Rules.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Text.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
