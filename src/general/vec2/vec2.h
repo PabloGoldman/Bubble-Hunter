@@ -1,11 +1,7 @@
 #ifndef VEC2
 #define VEC2
 
-#include "raylib.h"
-
 struct Dimentions;
-
-
 
 struct Vec2
 {

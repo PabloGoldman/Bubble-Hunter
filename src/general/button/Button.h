@@ -1,5 +1,4 @@
 #pragma once
-#include "raylib.h"
 #include "../text/Text.h"
 #include <iostream>
 class Button

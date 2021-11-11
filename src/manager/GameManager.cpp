@@ -1,5 +1,4 @@
 #include "GameManager.h"
-#include "raylib.h"
 
 GameManager::GameManager()
 {
