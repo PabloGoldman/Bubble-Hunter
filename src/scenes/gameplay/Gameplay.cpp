@@ -2,10 +2,17 @@
 #include <iostream>
 #include <string>
 
+#include <SFML\Window\Window.hpp>
+#include <SFML\Window\Keyboard.hpp>
+
 const int screenWidth = 800;
 const int screenHeight = 450;
 const int fontSize = 40;
 const int pointsToWin = 10;
+
+using namespace sf;
+
+Event event;
 
 Gameplay::Gameplay()
 {
@@ -54,7 +61,7 @@ void Gameplay::SetInPause(bool pause)
 
 void Gameplay::Input()
 {
-	if (IsKeyReleased(KEY_P))
+	if (sf::Keyboard::isKeyPressed(Keyboard::P))
 	{
 		pause->SetInPause(!pause->GetInPause());
 	}

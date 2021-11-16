@@ -1,10 +1,11 @@
 #include "Text.h"
 
+
 Text::Text()
 {
 	size = 50;
-	color = BLACK;
-	font = GetFontDefault();
+	color = sf::Color::Black;
+	//font = GetFontDefault();
 	spaceBetweenLetters = 5;
 }
 
@@ -25,12 +26,12 @@ std::string Text::GetText()
 	return tx;
 }
 
-Color Text::GetColor()
+sf::Color Text::GetColor()
 {
 	return color;
 }
 
-Font Text::GetTextFont()
+sf::Font Text::GetTextFont()
 {
 	return font;
 }
@@ -47,12 +48,12 @@ void Text::SetSize(int _size)
 	size = _size;
 }
 
-void Text::SetColor(Color _color)
+void Text::SetColor(sf::Color _color)
 {
 	color = _color;
 }
 
-void Text::SetFont(Font _font)
+void Text::SetFont(sf::Font _font)
 {
 	font = _font;
 }

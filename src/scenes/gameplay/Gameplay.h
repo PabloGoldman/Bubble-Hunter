@@ -4,11 +4,14 @@
 #include "inGamePause.h"
 #include "../SceneManager.h"
 #include "../endscreen/EndGameScreen.h"
+#include "../../general/audiomanager/AudioManager.h"
+
+#include "SFML/Window.hpp"
+#include <SFML\Graphics\RenderWindow.hpp>
 
 class Gameplay
 {
 private:
-
 	EndGameScreen* endGameScreen;
 	AudioManager* audioManager;
 	SceneManager* scene;
@@ -42,5 +45,6 @@ public:
 	void SetSceneManager(SceneManager* sc);
 	void InGame();
 	void InitGameplay();
+
 };
 
