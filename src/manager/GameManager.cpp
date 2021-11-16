@@ -1,4 +1,8 @@
 #include "GameManager.h"
+#include "SFML/Window.hpp"
+#include <SFML/Graphics.hpp>
+
+using namespace sf;
 
 GameManager::GameManager()
 {
@@ -35,12 +39,11 @@ GameManager::~GameManager()
 
 void GameManager::RunGame()
 {
-	InitWindow(screenWidth, screenHeight, "Pong");
+	RenderWindow window(VideoMode(screenWidth, screenHeight), "Dauuuu");
 
-	while (!WindowShouldClose() && isPlaying)    // Detect window close button or ESC key
+	while (window.isOpen() && isPlaying)    // Detect window close button or ESC key
 	{
-		BeginDrawing();
-		ClearBackground(BLUE);
+		window.clear();
 
 		PlayMusicInMenu();
 
@@ -92,9 +95,9 @@ void GameManager::RunGame()
 		default:
 			break;
 		}
-		EndDrawing();
-	}
-	CloseWindow();        // Close window and OpenGL context
+		window.display();
+	}      
+	window.close();    // Close window and OpenGL context
 }
 
 
