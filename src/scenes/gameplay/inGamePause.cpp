@@ -1,9 +1,12 @@
 #include "InGamePause.h"
+#include <SFML\Window\Keyboard.hpp>
 
 const int screenWidth = 800;
 const int screenHeight = 450;
 
 const int fontSize = 40;
+
+using namespace sf;
 
 InGamePause::InGamePause()
 {
@@ -51,14 +54,14 @@ void InGamePause::SetMenuOption(OPTION _option)
 
 void InGamePause::CheckInput()
 {
-	if (IsKeyReleased(KEY_DOWN) || IsKeyReleased(KEY_S) || IsKeyReleased(KEY_UP) || IsKeyReleased(KEY_W))
+	if (Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S) || Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W))
 	{
 		if (option == OPTION::RESUME)
 			option = OPTION::QUIT;
 		else
 			option = OPTION::RESUME;
 	}
-	else if (IsKeyReleased(KEY_ENTER))
+	else if (Keyboard::isKeyPressed(Keyboard::Enter))
 	{
 		if (option == OPTION::RESUME)
 			SetInPause(false);
@@ -73,7 +76,7 @@ void InGamePause::CheckInput()
 
 void InGamePause::DrawPauseMenu()
 {
-	Font font = GetFontDefault();
+	Font font;
 
 	DrawRectangle(screenWidth / 2 - 250, screenHeight / 2 - 100, 500, 300, DARKBLUE);
 	resume->DrawButton(resume->GetRectangle(), "RESUME");
