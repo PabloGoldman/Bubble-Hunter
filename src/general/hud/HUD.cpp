@@ -1,4 +1,5 @@
 #include "HUD.h"
+using namespace sf;
 
 void HUD::DrawPoints(int points, int posX, int posY, int fontSize, Color color)
 {
