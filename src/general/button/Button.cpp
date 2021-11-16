@@ -11,7 +11,7 @@ Button::Button()
 
 	rectangle.height = 200;
 	rectangle.width = 200;
-	color = BLACK;
+	color = sf::Color::Black;
 }
 
 Button::~Button()
@@ -26,7 +26,7 @@ Rectangle Button::GetRectangle()
 	return rectangle;
 }
 
-Color Button::GetColor()
+sf::Color Button::GetColor()
 {
 	return color;
 }
@@ -51,7 +51,7 @@ std::string Button::GetText()
 	return text->GetText();
 }
 
-Font Button::GetFont()
+sf::Font Button::GetFont()
 {
 	return text->GetTextFont();
 }
@@ -94,7 +94,7 @@ void Button::SetRectanglePos(int posX, int posY)
 	rectangle.y = posY;
 }
 
-void Button::SetColor(Color _color)
+void Button::SetColor(sf::Color _color)
 {
 	color = _color;
 }

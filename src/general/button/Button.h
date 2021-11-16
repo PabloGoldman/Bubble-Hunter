@@ -6,7 +6,7 @@ class Button
 private:
 	Text* text;
 
-	Color color;
+	sf::Color color;
 	Rectangle rectangle;
 	bool isActive = false;
 
@@ -15,11 +15,11 @@ public:
 	~Button();
 
 	Rectangle GetRectangle();
-	Color GetColor();
+	sf::Color GetColor();
 
 	int GetFontSize();
 
-	Font GetFont();
+	sf::Font GetFont();
 
 	std::string GetText();
 
@@ -31,7 +31,7 @@ public:
 
 	void SetActive(bool _isActive);
 	void SetText(std::string txt);
-	void SetColor(Color _color);
+	void SetColor(sf::Color _color);
 	void SetWidth(int _width);
 	void SetHeight(int _height);
 	void SetRectanglePos(int posX, int posY);
