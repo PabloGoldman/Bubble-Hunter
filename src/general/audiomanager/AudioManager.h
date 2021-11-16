@@ -1,7 +1,11 @@
 #pragma once
+#include "SFML/Audio.hpp"
+
+using namespace sf;
 
 class AudioManager
 {
+
 private:
 	Music menuMusic;
 	Music gameMusic;

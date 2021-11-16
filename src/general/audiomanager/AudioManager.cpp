@@ -4,7 +4,7 @@ const float standardVolume = 0.3f;
 
 AudioManager::AudioManager()
 {
-	InitAudioDevice();
+	//InitAudioDevice();
 
 	musicInited = false;
 }
@@ -21,7 +21,7 @@ void AudioManager::InitMusic(Music music)
 
 Music AudioManager::GetMenuMusic()
 {
-	return menuMusic;
+	//return menuMusic;
 }
 
 void AudioManager::StopAllMusics()
