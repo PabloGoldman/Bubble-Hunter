@@ -114,7 +114,7 @@ void Menu::DrawButton(Button _button[], const char text[])
 
 void Menu::CheckOptionState()
 {
-	if (IsKeyReleased(KEY_DOWN))
+	if (Keyboard::isKeyPressed(Keyboard::Down))
 	{
 		switch (menuScene)
 		{
@@ -134,7 +134,7 @@ void Menu::CheckOptionState()
 			break;
 		}
 	}
-	else if (IsKeyReleased(KEY_UP))
+	else if (Keyboard::isKeyPressed(Keyboard::Up))
 	{
 		switch (menuScene)
 		{
@@ -158,7 +158,7 @@ void Menu::CheckOptionState()
 
 void Menu::CheckInput()
 {
-	if (IsKeyReleased(KEY_ENTER))
+	if (Keyboard::isKeyPressed(Keyboard::Enter))
 	{
 		switch (menuScene)
 		{
