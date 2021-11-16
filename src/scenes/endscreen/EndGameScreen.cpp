@@ -1,9 +1,12 @@
 #include "EndGameScreen.h"
+#include <SFML\Window\Keyboard.hpp>
 
 const int screenWidth = 800;
 const int screenHeight = 450;
 
 const int fontSize = 40;
+
+using namespace sf;
 
 EndGameScreen::EndGameScreen()
 {
@@ -40,14 +43,14 @@ void EndGameScreen::SetOption(ENDGAMEOPTION _option)
 
 void EndGameScreen::CheckInput()
 {
-	if (IsKeyReleased(KEY_DOWN) || IsKeyReleased(KEY_S) || IsKeyReleased(KEY_UP) || IsKeyReleased(KEY_W))
+	if (Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S) || Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W))
 	{
 		if (option == ENDGAMEOPTION::PLAY)
 			option = ENDGAMEOPTION::QUIT;
 		else
 			option = ENDGAMEOPTION::PLAY;
 	}
-	else if (IsKeyReleased(KEY_ENTER))
+	else if (Keyboard::isKeyPressed(Keyboard::Enter))
 	{
 		if (option == ENDGAMEOPTION::PLAY)
 			sceneManager->SetSceneManager(Scene::GAME);
@@ -59,7 +62,7 @@ void EndGameScreen::CheckInput()
 
 void EndGameScreen::DrawEndGameScreen()
 {
-	Font font = GetFontDefault();
+	Font font;
 
 	DrawRectangle(screenWidth / 2 - 220, 20, 500, 400, DARKBLUE); //Fondo
 
