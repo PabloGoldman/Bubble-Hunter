@@ -5,7 +5,7 @@ class Player
 {
 private:
 	Rectangle rectangle;
-	Color color;
+	sf::Color color;
 	int speed;
 	int points;
 
@@ -14,13 +14,13 @@ public:
 	~Player();
 
 	Rectangle GetRectangle();
-	Color GetColor();
+	sf::Color GetColor();
 
 	int GetSpeed();
 	int GetPoints();
 
 	void SetSpeed(int _speed);
-	void SetColor(Color _color);
+	void SetColor(sf::Color _color);
 	void SetWidth(int _width);
 	void SetHeight(int _height);
 	void SetPoints(int _points);

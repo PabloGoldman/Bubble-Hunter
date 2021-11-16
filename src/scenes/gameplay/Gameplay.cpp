@@ -12,8 +12,6 @@ const int pointsToWin = 10;
 
 using namespace sf;
 
-Event event;
-
 Gameplay::Gameplay()
 {
 	player = new Player();
@@ -86,7 +84,7 @@ void Gameplay::SetSceneManager(SceneManager* sc)
 
 void Gameplay::DrawPlayerPoints(Player* player, int x, int y)
 {
-	hud->DrawPoints(player->GetPoints(), x, y, fontSize, BLACK);
+	hud->DrawPoints(player->GetPoints(), x, y, fontSize, Color::Black);
 }
 
 

@@ -4,7 +4,7 @@ Player::Player()
 {
 	rectangle.width = 10;
 	rectangle.height = 100;
-	color = BLACK;
+	color = sf::Color::Black;
 	speed = 300;
 	points = 0;
 }
@@ -19,7 +19,7 @@ Rectangle Player::GetRectangle()
 	return rectangle;
 }
 
-Color Player::GetColor()
+sf::Color Player::GetColor()
 {
 	return color;
 }
@@ -39,7 +39,7 @@ void Player::SetSpeed(int _speed)
 	speed = _speed;
 }
 
-void Player::SetColor(Color _color)
+void Player::SetColor(sf::Color _color)
 {
 	color = _color;
 }
