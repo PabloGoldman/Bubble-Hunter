@@ -1,20 +1,21 @@
 #pragma once
 #include "../text/Text.h"
 #include <iostream>
+
 class Button
 {
 private:
 	Text* text;
 
 	sf::Color color;
-	Rectangle rectangle;
+	sf::RectangleShape rectangle;
 	bool isActive = false;
 
 public:
 	Button();
 	~Button();
 
-	Rectangle GetRectangle();
+	sf::RectangleShape GetRectangle();
 	sf::Color GetColor();
 
 	int GetFontSize();
@@ -36,7 +37,7 @@ public:
 	void SetHeight(int _height);
 	void SetRectanglePos(int posX, int posY);
 
-	void DrawButton(Rectangle rectangle, const char text[]);
+	void DrawButton(sf::RectangleShape rectangle, const char text[]);
 
 };
 

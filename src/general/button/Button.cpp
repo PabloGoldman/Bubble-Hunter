@@ -9,8 +9,8 @@ Button::Button()
 {
 	text = new Text();
 
-	rectangle.height = 200;
-	rectangle.width = 200;
+	rectangle.setSize(sf::Vector2f(200, 200));
+
 	color = sf::Color::Black;
 }
 
@@ -21,7 +21,7 @@ Button::~Button()
 
 //-------------------------------------------GETTERS------------------------------
 
-Rectangle Button::GetRectangle()
+sf::RectangleShape Button::GetRectangle()
 {
 	return rectangle;
 }
@@ -33,12 +33,12 @@ sf::Color Button::GetColor()
 
 int Button::GetWidth()
 {
-	return rectangle.width;
+	return rectangle.getSize().x;
 }
 
 int Button::GetHeight()
 {
-	return rectangle.height;
+	return rectangle.getSize().y;
 }
 
 bool Button::GetActive()
@@ -80,18 +80,19 @@ void Button::SetActive(bool _isActive)
 
 void Button::SetWidth(int _width)
 {
-	rectangle.width = _width;
+	sf::Vector2f aux = sf::Vector2f(_width, rectangle.getSize().y);
+	rectangle.setSize(aux);
 }
 
 void Button::SetHeight(int _height)
 {
-	rectangle.height = _height;
+	sf::Vector2f aux = sf::Vector2f(rectangle.getSize().x, _height);
+	rectangle.setSize(aux);
 }
 
 void Button::SetRectanglePos(int posX, int posY)
 {
-	rectangle.x = posX;
-	rectangle.y = posY;
+	rectangle.setPosition(posX, posY);
 }
 
 void Button::SetColor(sf::Color _color)
@@ -101,14 +102,16 @@ void Button::SetColor(sf::Color _color)
 
 //-------------------------------------------FUNCIONES---------------------------------
 
-void Button::DrawButton(Rectangle rectangle, const char text[])
+void Button::DrawButton(sf::RectangleShape rectangle, const char text[])
 {
-	Font font = GetFontDefault();
+
+	sf::Font font;
+
 
 	DrawTextRec(font, text, GetRectangle(), GetFontSize(), GetSpaceBetweenLetters(), false, GetColor());
 
 	if (isActive) //Dibuja el boton de la izquierda, el que muestra la seleccion
 	{
-		DrawRectangle(GetRectangle().x - correctionX, GetRectangle().y + correctionY, optionButtonHeight, optionButtonWidth, GetColor());
+		DrawRectangle(rectangle.getSize().x - correctionX, rectangle.getSize().y + correctionY, optionButtonHeight, optionButtonWidth, GetColor());
 	}
 }

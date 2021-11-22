@@ -1,6 +1,11 @@
 #ifndef VEC2
 #define VEC2
 
+#define DEG2RAD 0.01745329251f
+#define RAD2DEG 57.2957795131f
+
+#include "SFML/Graphics.hpp"
+
 struct Dimentions;
 
 struct Vec2
@@ -13,14 +18,14 @@ public:
 	float magnitude;
 
 	Vec2();
-	Vec2(Vector2 v);
+	Vec2(sf::Vector2f v);
 	Vec2(int _x, int _y);
 	Vec2(int _x, float _y);
 	Vec2(float _x, int _y);
 	Vec2(float _x, float _y);
 	~Vec2();
 
-	Vector2 ToVector2();
+	sf::Vector2f ToVector2();
 	Dimentions ToDimentions();
 
 	Vec2 Lerp(Vec2 a, Vec2 b, float t);
@@ -34,7 +39,7 @@ public:
 	Vec2 Min(Vec2 a, Vec2 b);
 	Vec2 Normalize(Vec2 a);
 
-	void Set(Vector2 v);
+	void Set(sf::Vector2f v);
 	void Set(Vec2 v);
 	void Set(int _x, int _y);
 	void Set(int _x, float _y);
@@ -73,7 +78,7 @@ public:
 	const float k = 0.000001f;
 
 	Int2();
-	Int2(Vector2 v);
+	Int2(sf::Vector2f v);
 	Int2(int _x, int _y);
 	Int2(int _x, float _y);
 	Int2(float _x, int _y);
@@ -89,7 +94,7 @@ public:
 	Int2 Min(Int2 a, Int2 b);
 	Int2 Normalize(Int2 a);
 
-	void Set(Vector2 v);
+	void Set(sf::Vector2f v);
 	void Set(Int2 v);
 	void Set(int _x, int _y);
 	void Set(int _x, float _y);
@@ -116,14 +121,14 @@ struct Dimentions
 public:
 	Dimentions();
 	Dimentions(Vec2 dim);
-	Dimentions(Vector2 dim);
+	Dimentions(sf::Vector2f dim);
 	Dimentions(int w, int h);
 	Dimentions(float w, float h);
 	~Dimentions();
 	int width;
 	int height;
 	Vec2 ToVec2();
-	Vector2 ToVector2();
+	sf::Vector2f ToVector2();
 };
 
 #endif

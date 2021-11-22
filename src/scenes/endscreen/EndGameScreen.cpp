@@ -64,7 +64,8 @@ void EndGameScreen::DrawEndGameScreen()
 {
 	Font font;
 
-	DrawRectangle(screenWidth / 2 - 220, 20, 500, 400, DARKBLUE); //Fondo
+	
+	DrawRectangle(screenWidth / 2 - 220, 20, 500, 400, sf::Color::Blue); //Fondo
 
 	if (player1Win)
 		gameFinished->DrawButton(gameFinished->GetRectangle(), "PLAYER 1 WINS");

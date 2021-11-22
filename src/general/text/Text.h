@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+
 #include "SFML/Graphics.hpp"
 
 //using namespace sf;
@@ -8,7 +9,7 @@ class Text
 {
 private:
 	std::string tx = "";
-	//Vector2 pos = { 0,0 };
+	//sf::Vector2f pos = { 0,0 };
 	int size;
 	sf::Color color;
 	sf::Font font;

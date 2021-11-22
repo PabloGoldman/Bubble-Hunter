@@ -78,7 +78,7 @@ void InGamePause::DrawPauseMenu()
 {
 	Font font;
 
-	DrawRectangle(screenWidth / 2 - 250, screenHeight / 2 - 100, 500, 300, DARKBLUE);
+	DrawRectangle(screenWidth / 2 - 250, screenHeight / 2 - 100, 500, 300, sf::Color::Blue);
 	resume->DrawButton(resume->GetRectangle(), "RESUME");
 	quit->DrawButton(resume->GetRectangle(), "QUIT");
 }

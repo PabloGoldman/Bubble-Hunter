@@ -1,4 +1,5 @@
 #include "vec2.h"
+
 #include <math.h>
 
 #pragma region Vec2
@@ -8,7 +9,7 @@ Vec2::Vec2()
 	y = 0;
 	magnitude = 0;
 }
-Vec2::Vec2(Vector2 v)
+Vec2::Vec2(sf::Vector2f v)
 {
 	x = v.x;
 	y = v.y;
@@ -45,7 +46,7 @@ float Vec2::Dot(Vec2 a, Vec2 b) { return (a.x * b.x + a.y * b.y); }
 float Vec2::Distance(Vec2 a, Vec2 b) { return sqrt(pow((a.x - b.x), 2) + pow((a.y - b.y), 2)); }
 float Vec2::Angle(Vec2 from, Vec2 to)//Return distance in angles between 2 vectors
 {
-	return (acos(sqrt(pow(to.x + from.y, 2) + pow(to.y + from.y, 2))) * RAD2DEG);
+	return (acos(sqrt(pow(to.x + from.y, 2) + pow(to.y + from.y, 2))) * DEG2RAD);
 }
 Vec2 Vec2::Project(Vec2 v, Vec2 norm)
 {
@@ -85,7 +86,7 @@ Vec2 Vec2::Normalize(Vec2 a) { return (a / Magnitude(a)); }
 Vec2 Vec2::zero() { return { 0,0 }; }
 Vec2 Vec2::one() { return { 1,1 }; }
 
-void Vec2::Set(Vector2 v)
+void Vec2::Set(sf::Vector2f v)
 {
 	x = v.x;
 	y = v.y;
@@ -116,7 +117,7 @@ void Vec2::Set(float _x, float _y)
 	y = _y;
 }
 
-Vector2 Vec2::ToVector2()
+sf::Vector2f Vec2::ToVector2()
 {
 	return { x,y };
 }
@@ -153,7 +154,7 @@ Int2::Int2()
 	y = 0;
 	magnitude = 0;
 }
-Int2::Int2(Vector2 v)
+Int2::Int2(sf::Vector2f v)
 {
 	x = v.x;
 	y = v.y;
@@ -222,7 +223,7 @@ Int2 Int2::zero() { return { 0,0 }; }
 Int2 Int2::one() { return { 1,1 }; }
 
 #if not __has_include("raylib.h")
-void Int2::Set(Vector2 v)
+void Int2::Set(sf::Vector2f v)
 {
 	x = v.x;
 	y = v.y;
@@ -279,7 +280,7 @@ Dimentions::Dimentions(Vec2 dim)
 	width = dim.x;
 	height = dim.y;
 }
-Dimentions::Dimentions(Vector2 dim)
+Dimentions::Dimentions(sf::Vector2f dim)
 {
 	width = dim.x;
 	height = dim.y;
@@ -299,7 +300,7 @@ Vec2 Dimentions::ToVec2()
 {
 	return Vec2(width, height);
 }
-Vector2 Dimentions::ToVector2()
+sf::Vector2f Dimentions::ToVector2()
 {
 	return Vec2(width, height).ToVector2();
 }

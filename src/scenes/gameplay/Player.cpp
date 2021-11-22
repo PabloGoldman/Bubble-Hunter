@@ -2,8 +2,7 @@
 
 Player::Player()
 {
-	rectangle.width = 10;
-	rectangle.height = 100;
+	rectangle.setSize(sf::Vector2f(10, 100));
 	color = sf::Color::Black;
 	speed = 300;
 	points = 0;
@@ -14,7 +13,7 @@ Player::~Player()
 
 }
 
-Rectangle Player::GetRectangle()
+sf::RectangleShape Player::GetRectangle()
 {
 	return rectangle;
 }
@@ -46,12 +45,14 @@ void Player::SetColor(sf::Color _color)
 
 void Player::SetWidth(int _width)
 {
-	rectangle.width = _width;
+	sf::Vector2f aux = sf::Vector2f(_width, rectangle.getSize().y);
+	rectangle.setSize(aux);
 }
 
 void Player::SetHeight(int _height)
 {
-	rectangle.height = _height;
+	sf::Vector2f aux = sf::Vector2f(rectangle.getSize().x, _height);
+	rectangle.setSize(aux);
 }
 
 void Player::SetPoints(int _points)
@@ -61,8 +62,7 @@ void Player::SetPoints(int _points)
 
 void Player::SetRectanglePos(int posX, int posY)
 {
-	rectangle.x = posX;
-	rectangle.y = posY;
+	rectangle.setPosition(sf::Vector2f(posX, posY));
 }
 
 void Player::AddPoints(int _points)

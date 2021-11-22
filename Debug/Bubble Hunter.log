@@ -1,3 +1,0 @@
-﻿main.obj : error LNK2001: símbolo externo "public: static class sf::RenderStates const sf::RenderStates::Default" (?Default@RenderStates@sf@@2V12@B) sin resolver
-main.obj : error LNK2001: símbolo externo "public: static class sf::Color const sf::Color::Green" (?Green@Color@sf@@2V12@B) sin resolver
-D:\GitHub\Bubble-Hunter\Debug\Bubble Hunter.exe : fatal error LNK1120: 2 externos sin resolver

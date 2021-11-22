@@ -15,7 +15,7 @@ private:
 	AudioManager* audioManager;
 	SceneManager* sceneManager;
 	Button* _button[totalButtons];
-	Texture2D logo;
+	sf::Image logo;
 
 	void Input();
 	void Update();

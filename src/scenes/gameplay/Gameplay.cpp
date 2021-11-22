@@ -84,7 +84,7 @@ void Gameplay::SetSceneManager(SceneManager* sc)
 
 void Gameplay::DrawPlayerPoints(Player* player, int x, int y)
 {
-	hud->DrawPoints(player->GetPoints(), x, y, fontSize, Color::Black);
+	hud->DrawPoints(player->GetPoints(), x, y, fontSize, sf::Color::Black);
 }
 
 

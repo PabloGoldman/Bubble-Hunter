@@ -84,7 +84,7 @@ void Menu::InitMenuData()
 
 void Menu::DrawLogo()
 {
-	DrawTextureEx(logo, { screenWidth - 200,screenHeight - 170 }, 0, 0.4, WHITE);
+	//DrawTextureEx(logo, { screenWidth - 200,screenHeight - 170 }, 0, 0.4, sf::Color::White);
 }
 
 void Menu::SetButtonsData(Button _button[], int posX, int posY, int height, int width)
@@ -94,12 +94,12 @@ void Menu::SetButtonsData(Button _button[], int posX, int posY, int height, int 
 	_button->SetHeight(height);
 	_button->SetWidth(width);
 
-	_button->SetColor(BLACK);
+	_button->SetColor(sf::Color::Black);
 }
 
 void Menu::LoadTextures()
 {
-	logo = LoadTexture("res/Images/assets/Cachuflito.png");
+	logo.loadFromFile("res/Images/assets/Cachuflito.png");
 }
 
 void Menu::UnloadTextures()
