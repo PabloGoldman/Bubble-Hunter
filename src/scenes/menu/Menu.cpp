@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "SFML/Window/Keyboard.hpp"
 
 const int screenWidth = 800;
 const int screenHeight = 450;
@@ -47,15 +48,28 @@ void Menu::SetSceneManager(SceneManager* sm)
 
 void Menu::InMenu(sf::RenderWindow* window)
 {
-	Input();
+	Input(window);
 	Update();
 	Draw(window);
 }
 
-void Menu::Input()
+void Menu::Input(sf::RenderWindow* window)
 {
-	Menu::CheckOptionState();
-	Menu::CheckInput();
+	sf::Event event;
+
+	bool first = true;
+
+	while (window->pollEvent(event)) {
+		if (event.type == sf::Event::Closed) {
+			window->close();
+		}
+		if (event.type == sf::Event::KeyPressed) 
+		{
+			Menu::CheckInput(event);
+			Menu::CheckOptionState(event);
+		}
+	}
+	
 }
 
 void Menu::Update()
@@ -82,6 +96,7 @@ void Menu::InitMenuData()
 	SetButtonsData(_button[1], screenWidth * 0.5 - 100, OptionsButtonPosition, 250, 300);
 	SetButtonsData(_button[2], screenWidth * 0.5 - 100, CreditsButtonPosition, 250, 300);
 	SetButtonsData(_button[3], screenWidth * 0.5 - 100, ExitButtonPosition, 250, 300);
+	_button[1]->SetColor(sf::Color::Red);
 }
 
 void Menu::DrawLogo()
@@ -95,8 +110,6 @@ void Menu::SetButtonsData(Button _button[], int posX, int posY, int height, int 
 
 	_button->SetHeight(height);
 	_button->SetWidth(width);
-
-	//_button->SetColor(sf::Color::Black);
 }
 
 void Menu::LoadTextures()
@@ -116,13 +129,14 @@ void Menu::UnloadTextures()
 
 void Menu::DrawButton(Button _button[], const char text[], sf::RenderWindow* window)
 {
-	//_button->DrawButton(_button->GetRectangle(), text, window);
+	_button->DrawButton(_button->GetRectangle(), text, window);
 }
 
-void Menu::CheckOptionState()
+void Menu::CheckOptionState(sf::Event& event)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
+		std::cout << "APRETASTE FLECHITA ABAJO GORDO TROLO\n";
 		switch (menuScene)
 		{
 		case MenuScene::PLAY:
@@ -143,18 +157,23 @@ void Menu::CheckOptionState()
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
+		std::cout << "APRETASTE FLECHITA ARRIBA GORDO TROLO\n";
 		switch (menuScene)
 		{
 		case MenuScene::PLAY:
 			menuScene = MenuScene::EXIT;
+			std::cout << "ESTAS EN PLAY\n";
 			break;
 		case MenuScene::OPTIONS:
+			std::cout << "ESTAS EN OCIO\n";
 			menuScene = MenuScene::PLAY;
 			break;
 		case MenuScene::CREDITS:
+			std::cout << "ESTAS EN CREDS\n";
 			menuScene = MenuScene::OPTIONS;
 			break;
 		case MenuScene::EXIT:
+			std::cout << "ESTAS EN EXIT\n";
 			menuScene = MenuScene::CREDITS;
 			break;
 		default:
@@ -163,10 +182,11 @@ void Menu::CheckOptionState()
 	}
 }
 
-void Menu::CheckInput()
+void Menu::CheckInput(sf::Event& event)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
+		std::cout << "APRETASTE ENTER GORDO TROLO\n";
 		switch (menuScene)
 		{
 		case MenuScene::PLAY:
@@ -217,6 +237,12 @@ void Menu::SetButtonsToFalse()
 		if (i != (int)menuScene)
 		{
 			_button[i]->SetActive(false);
+			_button[i]->SetColor(sf::Color::Yellow);
+		}
+		else
+		{
+			_button[i]->SetActive(true);
+			_button[i]->SetColor(sf::Color::Cyan);
 		}
 	}
 }

@@ -2,6 +2,8 @@
 #include "SFML/Window.hpp"
 #include <SFML/Graphics.hpp>
 
+#include "general/externs/Externs.h"
+
 using namespace sf;
 
 GameManager::GameManager()
@@ -13,6 +15,8 @@ GameManager::GameManager()
 	_gameplay = new Gameplay();
 	_credits = new Credits();
 	_rules = new Rules();
+
+	ExternVars::InitExternVars();
 
 	screenWidth = 800;
 	screenHeight = 450;
@@ -42,6 +46,7 @@ void GameManager::RunGame()
 	RenderWindow* window = new RenderWindow(VideoMode(screenWidth, screenHeight), "Dauuuu");
 
 	window->setKeyRepeatEnabled(false);
+
 
 	while (window->isOpen() && isPlaying)    // Detect window close button or ESC key
 	{

@@ -28,12 +28,13 @@ public:
 	bool GetActive();
 
 	void SetActive(bool _isActive);
+	void SetColor(sf::Color c);
 	void SetText(std::string txt);
 	void SetWidth(int _width);
 	void SetHeight(int _height);
 	void SetRectanglePos(int posX, int posY);
 
-	//void DrawButton(sf::RectangleShape rectangle, const char text[], sf::RenderWindow* window);
+	void DrawButton(sf::RectangleShape rectangle, const char text[], sf::RenderWindow* window);
 
 };
 

@@ -16,6 +16,9 @@
     <ClCompile Include="src\scenes\gameplay\inGamePause.cpp" />
     <ClCompile Include="src\scenes\menu\Menu.cpp" />
     <ClCompile Include="src\scenes\rules\Rules.cpp" />
+    <ClCompile Include="src\general\externs\Externs.cpp">
+      <Filter>extern</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\general\audiomanager\AudioManager.h" />
@@ -32,5 +35,13 @@
     <ClInclude Include="src\scenes\gameplay\inGamePause.h" />
     <ClInclude Include="src\scenes\menu\Menu.h" />
     <ClInclude Include="src\scenes\rules\Rules.h" />
+    <ClInclude Include="src\general\externs\Externs.h">
+      <Filter>extern</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="extern">
+      <UniqueIdentifier>{4ec51ed6-de88-4b97-a586-4e9a75b670e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

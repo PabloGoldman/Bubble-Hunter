@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\general\audiomanager\AudioManager.cpp" />
     <ClCompile Include="src\general\button\Button.cpp" />
+    <ClCompile Include="src\general\externs\Externs.cpp" />
     <ClCompile Include="src\general\hud\HUD.cpp" />
     <ClCompile Include="src\general\text\Text.cpp" />
     <ClCompile Include="src\general\vec2\vec2.cpp" />
@@ -38,6 +39,7 @@
   <ItemGroup>
     <ClInclude Include="src\general\audiomanager\AudioManager.h" />
     <ClInclude Include="src\general\button\Button.h" />
+    <ClInclude Include="src\general\externs\Externs.h" />
     <ClInclude Include="src\general\hud\HUD.h" />
     <ClInclude Include="src\general\text\Text.h" />
     <ClInclude Include="src\general\vec2\vec2.h" />

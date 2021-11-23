@@ -17,12 +17,12 @@ private:
 	Button* _button[totalButtons];
 	sf::Image* logo;
 
-	void Input();
+	void Input(sf::RenderWindow* window);
 	void Update();
 	void Draw(sf::RenderWindow* window);
 	void SetMenuOption();
-	void CheckInput();
-	void CheckOptionState();
+	void CheckInput(sf::Event& event);
+	void CheckOptionState(sf::Event& event);
 	void SetButtonsData(Button _button[], int posX, int posY, int height, int width);
 	void DrawButton(Button _button[], const char text[], sf::RenderWindow* window);
 	void SetButtonsToFalse();
