@@ -3,7 +3,6 @@
 Player::Player()
 {
 	rectangle.setSize(sf::Vector2f(10, 100));
-	color = sf::Color::Black;
 	speed = 300;
 	points = 0;
 }

@@ -84,7 +84,7 @@ void Gameplay::SetSceneManager(SceneManager* sc)
 
 void Gameplay::DrawPlayerPoints(Player* player, int x, int y, sf::RenderWindow* window)
 {
-	hud->DrawPoints(player->GetPoints(), x, y, fontSize, sf::Color::Black, window);
+	//hud->DrawPoints(player->GetPoints(), x, y, fontSize, sf::Color::Black, window);
 }
 
 
@@ -136,9 +136,6 @@ void Gameplay::SetPlayerPosition(Player* player, int posX, int posY)
 
 void Gameplay::DrawPlayer(Player* player, sf::RenderWindow* window)
 {
-	sf::RectangleShape rec = player->GetRectangle();
-	rec.setFillColor(player->GetColor());
-	window->draw(player->GetRectangle());
 	
 }
 

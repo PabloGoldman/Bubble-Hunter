@@ -16,11 +16,8 @@ public:
 	~Button();
 
 	sf::RectangleShape GetRectangle();
-	sf::Color GetColor();
 
 	int GetFontSize();
-
-	sf::Font GetFont();
 
 	std::string GetText();
 
@@ -32,12 +29,11 @@ public:
 
 	void SetActive(bool _isActive);
 	void SetText(std::string txt);
-	void SetColor(sf::Color _color);
 	void SetWidth(int _width);
 	void SetHeight(int _height);
 	void SetRectanglePos(int posX, int posY);
 
-	void DrawButton(sf::RectangleShape rectangle, const char text[], sf::RenderWindow* window);
+	//void DrawButton(sf::RectangleShape rectangle, const char text[], sf::RenderWindow* window);
 
 };
 

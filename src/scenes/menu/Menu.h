@@ -1,7 +1,7 @@
 #pragma once
 #include "../../general/button/Button.h"
 #include "../SceneManager.h"
-#include "../../manager/GameManager.h"
+#include "../../general/audiomanager/AudioManager.h"
 
 enum class MenuScene { PLAY, OPTIONS, CREDITS, EXIT, MENUOPTION };
 

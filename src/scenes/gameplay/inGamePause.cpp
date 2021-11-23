@@ -76,17 +76,7 @@ void InGamePause::CheckInput()
 
 void InGamePause::DrawPauseMenu(sf::RenderWindow* window)
 {
-	sf::Font font;
-
-	sf::RectangleShape rec;
-	rec.setPosition(sf::Vector2f(screenWidth / 2 - 250, screenHeight / 2 - 100));
-	rec.setSize(sf::Vector2f(500, 300));
-	rec.setFillColor(sf::Color::Blue);
-	window->draw(rec);
-
-	//DrawRectangle(screenWidth / 2 - 250, screenHeight / 2 - 100, 500, 300, sf::Color::Blue);
-	resume->DrawButton(resume->GetRectangle(), "RESUME", window);
-	quit->DrawButton(resume->GetRectangle(), "QUIT", window);
+	
 }
 
 void InGamePause::Update()

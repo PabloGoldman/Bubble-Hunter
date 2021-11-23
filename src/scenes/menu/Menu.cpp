@@ -96,7 +96,7 @@ void Menu::SetButtonsData(Button _button[], int posX, int posY, int height, int 
 	_button->SetHeight(height);
 	_button->SetWidth(width);
 
-	_button->SetColor(sf::Color::Black);
+	//_button->SetColor(sf::Color::Black);
 }
 
 void Menu::LoadTextures()
@@ -116,7 +116,7 @@ void Menu::UnloadTextures()
 
 void Menu::DrawButton(Button _button[], const char text[], sf::RenderWindow* window)
 {
-	_button->DrawButton(_button->GetRectangle(), text, window);
+	//_button->DrawButton(_button->GetRectangle(), text, window);
 }
 
 void Menu::CheckOptionState()

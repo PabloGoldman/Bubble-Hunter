@@ -4,8 +4,7 @@
 Text::Text()
 {
 	size = 50;
-	color = sf::Color::Black;
-	//font = GetFontDefault();
+	//color = sf::Color::Black;
 	spaceBetweenLetters = 5;
 }
 
@@ -26,15 +25,6 @@ std::string Text::GetText()
 	return tx;
 }
 
-sf::Color Text::GetColor()
-{
-	return color;
-}
-
-sf::Font Text::GetTextFont()
-{
-	return font;
-}
 
 int Text::GetSpaceBetweenLetters()
 {
@@ -46,16 +36,6 @@ int Text::GetSpaceBetweenLetters()
 void Text::SetSize(int _size)
 {
 	size = _size;
-}
-
-void Text::SetColor(sf::Color _color)
-{
-	color = _color;
-}
-
-void Text::SetFont(sf::Font _font)
-{
-	font = _font;
 }
 
 void Text::SetText(std::string txt)

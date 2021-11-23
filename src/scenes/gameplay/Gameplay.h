@@ -1,13 +1,13 @@
 #pragma once
+#include "SFML/Window.hpp"
+#include <SFML\Graphics\RenderWindow.hpp>
+
 #include "Player.h"
 #include "../../general/hud/HUD.h"
 #include "inGamePause.h"
-#include "../SceneManager.h"
 #include "../endscreen/EndGameScreen.h"
 #include "../../general/audiomanager/AudioManager.h"
 
-#include "SFML/Window.hpp"
-#include <SFML\Graphics\RenderWindow.hpp>
 
 class Gameplay
 {

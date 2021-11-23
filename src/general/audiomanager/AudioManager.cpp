@@ -4,17 +4,10 @@ const float standardVolume = 0.3f;
 
 AudioManager::AudioManager()
 {
-	//InitAudioDevice();
-
 	musicInited = false;
 }
 
 AudioManager::~AudioManager()
-{
-
-}
-
-void AudioManager::InitMusic(sf::Music music)
 {
 
 }

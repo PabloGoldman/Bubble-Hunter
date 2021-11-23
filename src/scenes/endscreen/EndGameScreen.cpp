@@ -62,24 +62,7 @@ void EndGameScreen::CheckInput()
 
 void EndGameScreen::DrawEndGameScreen(sf::RenderWindow* window)
 {
-	sf::Font font;
-
-	sf::RectangleShape rec;
-	rec.setPosition(sf::Vector2f(screenWidth / 2 - 220, 20));
-	rec.setSize(sf::Vector2f(500, 400));
-	rec.setFillColor(sf::Color::Blue);
-	window->draw(rec);
-
-	//DrawRectangle(screenWidth / 2 - 220, 20, 500, 400, sf::Color::Blue); //Fondo
-
-	if (player1Win)
-		gameFinished->DrawButton(gameFinished->GetRectangle(), "PLAYER 1 WINS", window);
-	else
-		gameFinished->DrawButton(gameFinished->GetRectangle(), "PLAYER 2 WINS", window);
-
-
-	replay->DrawButton(replay->GetRectangle(), "PLAY AGAIN", window);
-	quit->DrawButton(quit->GetRectangle(), "QUIT", window);
+	
 }
 
 void EndGameScreen::Update()

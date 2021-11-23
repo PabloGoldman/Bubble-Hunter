@@ -9,25 +9,19 @@ class Text
 {
 private:
 	std::string tx = "";
-	//sf::Vector2f pos = { 0,0 };
 	int size;
-	sf::Color color;
-	sf::Font font;
 	int spaceBetweenLetters;
 public:
 	Text();
 	~Text();
 
 	int GetSize();
-	sf::Color GetColor();
-	sf::Font GetTextFont();
 	int GetSpaceBetweenLetters();
 	std::string GetText();
 
 
 	void SetText(std::string txt);
 	void SetSize(int _size);
-	void SetColor(sf::Color _color);
 	void SetFont(sf::Font _font);
 	void SetSpaceBetweenLetters(int _space);
 };

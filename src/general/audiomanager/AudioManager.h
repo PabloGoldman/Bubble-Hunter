@@ -4,9 +4,6 @@
 class AudioManager
 {
 private:
-	sf::Music menuMusic;
-	sf::Music gameMusic;
-	sf::Sound optionSound;
 
 	bool menuMusicInited;
 	bool gameMusicInited;
@@ -17,8 +14,6 @@ private:
 public:
 	AudioManager();
 	~AudioManager();
-
-	void InitMusic(sf::Music music);
 
 	void GetMenuMusic();
 	void StopAllMusics();
