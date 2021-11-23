@@ -102,7 +102,7 @@ void Menu::SetButtonsData(Button _button[], int posX, int posY, int height, int 
 void Menu::LoadTextures()
 {
 	if(logo)
-		logo->loadFromFile("res/Images/assets/Cachuflito.png");
+		logo->loadFromFile("res/assets/logo.png");
 }
 
 void Menu::UnloadTextures()
