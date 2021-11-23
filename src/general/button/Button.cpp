@@ -102,16 +102,29 @@ void Button::SetColor(sf::Color _color)
 
 //-------------------------------------------FUNCIONES---------------------------------
 
-void Button::DrawButton(sf::RectangleShape rectangle, const char text[])
+void Button::DrawButton(sf::RectangleShape rectangle, const char text[], sf::RenderWindow* window)
 {
 
 	sf::Font font;
+	font.loadFromFile("font/font.ttf");
 
+	sf::Text txt;
+	txt.setString(text);
 
-	DrawTextRec(font, text, GetRectangle(), GetFontSize(), GetSpaceBetweenLetters(), false, GetColor());
+	txt.setPosition(GetRectangle().getPosition());
+	
+	window->draw(rectangle);
+	window->draw(txt);
+
+	//DrawTextRec(font, text, GetRectangle(), GetFontSize(), GetSpaceBetweenLetters(), false, GetColor());
 
 	if (isActive) //Dibuja el boton de la izquierda, el que muestra la seleccion
 	{
-		DrawRectangle(rectangle.getSize().x - correctionX, rectangle.getSize().y + correctionY, optionButtonHeight, optionButtonWidth, GetColor());
+		sf::RectangleShape rec;
+		rec.setPosition(sf::Vector2f(rectangle.getSize().x - correctionX, rectangle.getSize().y + correctionY));
+		rec.setSize(sf::Vector2f(optionButtonHeight, optionButtonWidth));
+		rec.setFillColor(GetColor());
+		window->draw(rec);
+		//DrawRectangle(rectangle.getSize().x - correctionX, rectangle.getSize().y + correctionY, optionButtonHeight, optionButtonWidth, GetColor());
 	}
 }

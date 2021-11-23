@@ -1,15 +1,12 @@
 #pragma once
 #include "SFML/Audio.hpp"
 
-using namespace sf;
-
 class AudioManager
 {
-
 private:
-	Music menuMusic;
-	Music gameMusic;
-	Sound optionSound;
+	sf::Music menuMusic;
+	sf::Music gameMusic;
+	sf::Sound optionSound;
 
 	bool menuMusicInited;
 	bool gameMusicInited;
@@ -21,9 +18,9 @@ public:
 	AudioManager();
 	~AudioManager();
 
-	void InitMusic(Music music);
+	void InitMusic(sf::Music music);
 
-	Music GetMenuMusic();
+	void GetMenuMusic();
 	void StopAllMusics();
 	void PlayMenuMusic();
 	void PlayGameMusic();

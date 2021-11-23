@@ -14,19 +14,19 @@ AudioManager::~AudioManager()
 
 }
 
-void AudioManager::InitMusic(Music music)
+void AudioManager::InitMusic(sf::Music music)
 {
 
 }
 
-Music AudioManager::GetMenuMusic()
-{
-	//return menuMusic;
+void AudioManager::GetMenuMusic()
+{	
+
 }
 
 void AudioManager::StopAllMusics()
 {
-
+	
 }
 
 void AudioManager::PlayMenuMusic()

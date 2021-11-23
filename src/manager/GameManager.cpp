@@ -39,13 +39,13 @@ GameManager::~GameManager()
 
 void GameManager::RunGame()
 {
-	RenderWindow window(VideoMode(screenWidth, screenHeight), "Dauuuu");
+	RenderWindow* window = new RenderWindow(VideoMode(screenWidth, screenHeight), "Dauuuu");
 
-	window.setKeyRepeatEnabled(false);
+	window->setKeyRepeatEnabled(false);
 
-	while (window.isOpen() && isPlaying)    // Detect window close button or ESC key
+	while (window->isOpen() && isPlaying)    // Detect window close button or ESC key
 	{
-		window.clear();
+		window->clear();
 
 		PlayMusicInMenu();
 
@@ -57,7 +57,7 @@ void GameManager::RunGame()
 				InitAllMenuData();
 				menuInited = true;
 			}
-			_menu->InMenu();
+			_menu->InMenu(window);
 			break;
 		case Scene::GAME:
 			if (!gameplayInited)
@@ -65,7 +65,7 @@ void GameManager::RunGame()
 				InitAllGameData();
 				gameplayInited = true;
 			}
-			_gameplay->InGame();
+			_gameplay->InGame(window);
 			break;
 		case Scene::ENDGAME:
 			if (!endGameScreenInited)
@@ -73,7 +73,7 @@ void GameManager::RunGame()
 				InitAllEndGameScreenData();
 				endGameScreenInited = true;
 			}
-			_endGameScreen->InEndGameScreen();
+			_endGameScreen->InEndGameScreen(window);
 			break;
 		case Scene::RULES:
 			if (!rulesInited)
@@ -81,7 +81,7 @@ void GameManager::RunGame()
 				InitAllRulesData();
 				rulesInited = true;
 			}
-			_rules->InRules();
+			_rules->InRules(window);
 			break;
 		case Scene::CREDITS:
 			if (!creditsInited)
@@ -89,7 +89,7 @@ void GameManager::RunGame()
 				InitAllCreditsData();
 				creditsInited = true;
 			}
-			_credits->InCredits();
+			_credits->InCredits(window);
 			break;
 		case Scene::EXIT:
 			isPlaying = false;
@@ -97,9 +97,9 @@ void GameManager::RunGame()
 		default:
 			break;
 		}
-		window.display();
+		window->display();
 	}      
-	window.close();    // Close window and OpenGL context
+	window->close();    // Close window and OpenGL context
 }
 
 

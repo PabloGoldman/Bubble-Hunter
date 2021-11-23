@@ -28,7 +28,7 @@ Gameplay::~Gameplay()
 	delete pause;
 }
 
-void Gameplay::InGame()
+void Gameplay::InGame(sf::RenderWindow* window)
 {
 	Input();
 	if (!pause->GetInPause())
@@ -37,14 +37,14 @@ void Gameplay::InGame()
 	}
 	else
 	{
-		pause->InPause();
+		pause->InPause(window);
 		if (scene->GetScene() == Scene::MENU)
 		{
 			ResetData(player);
 		}
 	}
 	audioManager->PlayGameMusic();
-	Draw();
+	Draw(window);
 }
 
 bool Gameplay::GetInPause()
@@ -59,7 +59,7 @@ void Gameplay::SetInPause(bool pause)
 
 void Gameplay::Input()
 {
-	if (sf::Keyboard::isKeyPressed(Keyboard::P))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 	{
 		pause->SetInPause(!pause->GetInPause());
 	}
@@ -70,11 +70,11 @@ void Gameplay::Update()
 
 }
 
-void Gameplay::Draw()
+void Gameplay::Draw(sf::RenderWindow* window)
 {
-	DrawPlayer(player);
+	DrawPlayer(player, window);
 
-	DrawPlayerPoints(player, 300, 50);
+	DrawPlayerPoints(player, 300, 50, window);
 }
 
 void Gameplay::SetSceneManager(SceneManager* sc)
@@ -82,9 +82,9 @@ void Gameplay::SetSceneManager(SceneManager* sc)
 	scene = sc;
 }
 
-void Gameplay::DrawPlayerPoints(Player* player, int x, int y)
+void Gameplay::DrawPlayerPoints(Player* player, int x, int y, sf::RenderWindow* window)
 {
-	hud->DrawPoints(player->GetPoints(), x, y, fontSize, sf::Color::Black);
+	hud->DrawPoints(player->GetPoints(), x, y, fontSize, sf::Color::Black, window);
 }
 
 
@@ -134,9 +134,12 @@ void Gameplay::SetPlayerPosition(Player* player, int posX, int posY)
 	player->SetRectanglePos(posX, posY);
 }
 
-void Gameplay::DrawPlayer(Player* player)
+void Gameplay::DrawPlayer(Player* player, sf::RenderWindow* window)
 {
-	DrawRectangleRec(player->GetRectangle(), player->GetColor());
+	sf::RectangleShape rec = player->GetRectangle();
+	rec.setFillColor(player->GetColor());
+	window->draw(player->GetRectangle());
+	
 }
 
 

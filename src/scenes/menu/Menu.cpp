@@ -22,6 +22,8 @@ Menu::Menu()
 {
 	menuScene = MenuScene::PLAY;
 
+	logo = new sf::Image();
+
 	for (int i = 0; i < totalButtons; i++)
 		_button[i] = new Button();
 }
@@ -43,11 +45,11 @@ void Menu::SetSceneManager(SceneManager* sm)
 	sceneManager = sm;
 }
 
-void Menu::InMenu()
+void Menu::InMenu(sf::RenderWindow* window)
 {
 	Input();
 	Update();
-	Draw();
+	Draw(window);
 }
 
 void Menu::Input()
@@ -62,12 +64,12 @@ void Menu::Update()
 	Menu::SetMenuOption();
 }
 
-void Menu::Draw()
+void Menu::Draw(sf::RenderWindow* window)
 {
-	DrawButton(_button[0], "PLAY");
-	DrawButton(_button[1], "CONTROLS");
-	DrawButton(_button[2], "CREDITS");
-	DrawButton(_button[3], "EXIT");
+	DrawButton(_button[0], "PLAY", window);
+	DrawButton(_button[1], "CONTROLS", window);
+	DrawButton(_button[2], "CREDITS", window);
+	DrawButton(_button[3], "EXIT", window);
 
 	DrawLogo();
 }
@@ -99,22 +101,27 @@ void Menu::SetButtonsData(Button _button[], int posX, int posY, int height, int 
 
 void Menu::LoadTextures()
 {
-	logo.loadFromFile("res/Images/assets/Cachuflito.png");
+	if(logo)
+		logo->loadFromFile("res/Images/assets/Cachuflito.png");
 }
 
 void Menu::UnloadTextures()
 {
-	UnloadTexture(logo);
+	if (logo)
+	{
+		delete logo;
+		logo = nullptr;
+	}
 }
 
-void Menu::DrawButton(Button _button[], const char text[])
+void Menu::DrawButton(Button _button[], const char text[], sf::RenderWindow* window)
 {
-	_button->DrawButton(_button->GetRectangle(), text);
+	_button->DrawButton(_button->GetRectangle(), text, window);
 }
 
 void Menu::CheckOptionState()
 {
-	if (Keyboard::isKeyPressed(Keyboard::Down))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		switch (menuScene)
 		{
@@ -134,7 +141,7 @@ void Menu::CheckOptionState()
 			break;
 		}
 	}
-	else if (Keyboard::isKeyPressed(Keyboard::Up))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		switch (menuScene)
 		{
@@ -158,7 +165,7 @@ void Menu::CheckOptionState()
 
 void Menu::CheckInput()
 {
-	if (Keyboard::isKeyPressed(Keyboard::Enter))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
 		switch (menuScene)
 		{

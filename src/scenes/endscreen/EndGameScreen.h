@@ -2,6 +2,8 @@
 #include "../../general/button/Button.h"
 #include "../SceneManager.h"
 
+#include "SFML/Graphics.hpp"
+
 enum class ENDGAMEOPTION { PLAY, QUIT };
 
 class EndGameScreen
@@ -17,7 +19,7 @@ private:
 
 
 	void CheckInput();
-	void DrawEndGameScreen();
+	void DrawEndGameScreen(sf::RenderWindow* window);
 	void Update();
 
 public:
@@ -33,5 +35,5 @@ public:
 	void SetSceneManager(SceneManager* sc);
 	void SetButtonsData();
 	void InitEndGameScreenData();
-	void InEndGameScreen();
+	void InEndGameScreen(sf::RenderWindow* window);
 };

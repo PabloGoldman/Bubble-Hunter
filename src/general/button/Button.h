@@ -37,7 +37,7 @@ public:
 	void SetHeight(int _height);
 	void SetRectanglePos(int posX, int posY);
 
-	void DrawButton(sf::RectangleShape rectangle, const char text[]);
+	void DrawButton(sf::RectangleShape rectangle, const char text[], sf::RenderWindow* window);
 
 };
 

@@ -17,7 +17,7 @@ private:
 	bool inPause;
 
 	void CheckInput();
-	void DrawPauseMenu();
+	void DrawPauseMenu(sf::RenderWindow* window);
 	void Update();
 
 public:
@@ -30,7 +30,7 @@ public:
 
 	void SetInPause(bool _inPause);
 	void SetSceneManager(SceneManager* sc);
-	void InPause();
+	void InPause(sf::RenderWindow* window);
 	void SetMenuOption(OPTION _option);
 	void SetButtonsData();
 	void InitInPauseData();

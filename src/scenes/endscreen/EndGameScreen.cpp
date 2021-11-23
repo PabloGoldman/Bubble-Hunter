@@ -29,11 +29,11 @@ ENDGAMEOPTION EndGameScreen::GetOption()
 	return option;
 }
 
-void EndGameScreen::InEndGameScreen()
+void EndGameScreen::InEndGameScreen(sf::RenderWindow* window)
 {
 	CheckInput();
 	Update();
-	DrawEndGameScreen();
+	DrawEndGameScreen(window);
 }
 
 void EndGameScreen::SetOption(ENDGAMEOPTION _option)
@@ -43,14 +43,14 @@ void EndGameScreen::SetOption(ENDGAMEOPTION _option)
 
 void EndGameScreen::CheckInput()
 {
-	if (Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S) || Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		if (option == ENDGAMEOPTION::PLAY)
 			option = ENDGAMEOPTION::QUIT;
 		else
 			option = ENDGAMEOPTION::PLAY;
 	}
-	else if (Keyboard::isKeyPressed(Keyboard::Enter))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
 		if (option == ENDGAMEOPTION::PLAY)
 			sceneManager->SetSceneManager(Scene::GAME);
@@ -60,21 +60,26 @@ void EndGameScreen::CheckInput()
 	}
 }
 
-void EndGameScreen::DrawEndGameScreen()
+void EndGameScreen::DrawEndGameScreen(sf::RenderWindow* window)
 {
-	Font font;
+	sf::Font font;
 
-	
-	DrawRectangle(screenWidth / 2 - 220, 20, 500, 400, sf::Color::Blue); //Fondo
+	sf::RectangleShape rec;
+	rec.setPosition(sf::Vector2f(screenWidth / 2 - 220, 20));
+	rec.setSize(sf::Vector2f(500, 400));
+	rec.setFillColor(sf::Color::Blue);
+	window->draw(rec);
+
+	//DrawRectangle(screenWidth / 2 - 220, 20, 500, 400, sf::Color::Blue); //Fondo
 
 	if (player1Win)
-		gameFinished->DrawButton(gameFinished->GetRectangle(), "PLAYER 1 WINS");
+		gameFinished->DrawButton(gameFinished->GetRectangle(), "PLAYER 1 WINS", window);
 	else
-		gameFinished->DrawButton(gameFinished->GetRectangle(), "PLAYER 2 WINS");
+		gameFinished->DrawButton(gameFinished->GetRectangle(), "PLAYER 2 WINS", window);
 
 
-	replay->DrawButton(replay->GetRectangle(), "PLAY AGAIN");
-	quit->DrawButton(quit->GetRectangle(), "QUIT");
+	replay->DrawButton(replay->GetRectangle(), "PLAY AGAIN", window);
+	quit->DrawButton(quit->GetRectangle(), "QUIT", window);
 }
 
 void EndGameScreen::Update()

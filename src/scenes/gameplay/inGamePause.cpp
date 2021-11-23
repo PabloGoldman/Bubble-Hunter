@@ -40,11 +40,11 @@ void InGamePause::SetSceneManager(SceneManager* sc)
 	sceneManager = sc;
 }
 
-void InGamePause::InPause()
+void InGamePause::InPause(sf::RenderWindow* window)
 {
 	CheckInput();
 	Update();
-	DrawPauseMenu();
+	DrawPauseMenu(window);
 }
 
 void InGamePause::SetMenuOption(OPTION _option)
@@ -54,14 +54,14 @@ void InGamePause::SetMenuOption(OPTION _option)
 
 void InGamePause::CheckInput()
 {
-	if (Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S) || Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		if (option == OPTION::RESUME)
 			option = OPTION::QUIT;
 		else
 			option = OPTION::RESUME;
 	}
-	else if (Keyboard::isKeyPressed(Keyboard::Enter))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
 		if (option == OPTION::RESUME)
 			SetInPause(false);
@@ -74,13 +74,19 @@ void InGamePause::CheckInput()
 	}
 }
 
-void InGamePause::DrawPauseMenu()
+void InGamePause::DrawPauseMenu(sf::RenderWindow* window)
 {
-	Font font;
+	sf::Font font;
 
-	DrawRectangle(screenWidth / 2 - 250, screenHeight / 2 - 100, 500, 300, sf::Color::Blue);
-	resume->DrawButton(resume->GetRectangle(), "RESUME");
-	quit->DrawButton(resume->GetRectangle(), "QUIT");
+	sf::RectangleShape rec;
+	rec.setPosition(sf::Vector2f(screenWidth / 2 - 250, screenHeight / 2 - 100));
+	rec.setSize(sf::Vector2f(500, 300));
+	rec.setFillColor(sf::Color::Blue);
+	window->draw(rec);
+
+	//DrawRectangle(screenWidth / 2 - 250, screenHeight / 2 - 100, 500, 300, sf::Color::Blue);
+	resume->DrawButton(resume->GetRectangle(), "RESUME", window);
+	quit->DrawButton(resume->GetRectangle(), "QUIT", window);
 }
 
 void InGamePause::Update()

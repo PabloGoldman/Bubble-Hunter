@@ -3,21 +3,44 @@
 
 using namespace sf;
 
-void Credits::InCredits()
+void Credits::InCredits(sf::RenderWindow* window)
 {
 	CheckInput();
-	DrawCredits();
+	DrawCredits(window);
 }
 
-void Credits::DrawCredits()
+void Credits::DrawCredits(sf::RenderWindow* window)
 {
-	Font font;
-	DrawText("Credits:", 10, 10, 40, sf::Color::Black);
-	DrawText("Creator: Pablo Goldman", 10, 60, 40, sf::Color::Black);
-	DrawText("Logo designer: Fermin Gimpel", 10, 110, 40, sf::Color::Black);
-	DrawText("Music By: Lautaro Bianco", 10, 160, 40, sf::Color::Black);
-	DrawText("Library Creator: Raysan", 10, 210, 40, sf::Color::Black);
-	DrawText("Press enter to continue...", 10, 400, 40, sf::Color::Black);
+
+	sf::Font font;
+	font.loadFromFile("font/font.ttf");
+
+	sf::Color color = sf::Color::Black;
+
+	sf::Text text;
+	text.setFont(font);
+	text.setFillColor(color);
+	text.setCharacterSize(40);
+
+	text.setString("Credits:");
+	text.setPosition(sf::Vector2f(10, 10));
+	window->draw(text);
+	text.setString("Creator: Pablo Goldman");
+	text.setPosition(sf::Vector2f(10, 60));
+	window->draw(text);
+	text.setString("Logo designer: Fermin Gimpel");
+	text.setPosition(sf::Vector2f(10, 110));
+	window->draw(text);
+	text.setString("Music By: Lautaro Bianco");
+	text.setPosition(sf::Vector2f(10, 160));
+	window->draw(text);
+	text.setString("Library Creator: Raysan");
+	text.setPosition(sf::Vector2f(10, 210));
+	window->draw(text);
+	text.setString("Press enter to continue...");
+	text.setPosition(sf::Vector2f(10, 400));
+	window->draw(text);
+
 }
 
 void Credits::SetSceneManager(SceneManager* sm)
@@ -32,7 +55,7 @@ void Credits::ReturnToMenu()
 
 void Credits::CheckInput()
 {
-	if (sf::Keyboard::isKeyPressed(Keyboard::Enter))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
 		ReturnToMenu();
 	}
