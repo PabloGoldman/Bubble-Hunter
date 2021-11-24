@@ -30,7 +30,7 @@ Gameplay::~Gameplay()
 
 void Gameplay::InGame(sf::RenderWindow* window)
 {
-	Input();
+	Input(window);
 	if (!pause->GetInPause())
 	{
 		Update();
@@ -57,12 +57,20 @@ void Gameplay::SetInPause(bool pause)
 	inPause = pause;
 }
 
-void Gameplay::Input()
+void Gameplay::Input(sf::RenderWindow* window)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
-	{
-		pause->SetInPause(!pause->GetInPause());
+	sf::Event event;
+
+	while (window->pollEvent(event)) {
+		if (event.type == sf::Event::Closed) {
+			window->close();
+		}
+		if (event.type == sf::Event::KeyPressed)
+		{
+			CheckPause();
+		}
 	}
+
 }
 
 void Gameplay::Update()
@@ -84,13 +92,26 @@ void Gameplay::SetSceneManager(SceneManager* sc)
 
 void Gameplay::DrawPlayerPoints(Player* player, int x, int y, sf::RenderWindow* window)
 {
-	//hud->DrawPoints(player->GetPoints(), x, y, fontSize, sf::Color::Black, window);
+	hud->DrawPoints(player->GetPoints(), x, y, fontSize, sf::Color::White, window);
 }
 
 
 void Gameplay::ResetData(Player* player)
 {
 	ResetPlayerData(player);
+}
+
+void Gameplay::CheckPlayerMovementInput(sf::Event event)
+{
+
+}
+
+void Gameplay::CheckPause()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+	{
+		pause->SetInPause(!pause->GetInPause());
+	}
 }
 
 void Gameplay::ResetPlayerData(Player* player)
@@ -136,7 +157,7 @@ void Gameplay::SetPlayerPosition(Player* player, int posX, int posY)
 
 void Gameplay::DrawPlayer(Player* player, sf::RenderWindow* window)
 {
-	
+	window->draw(player->GetRectangle());
 }
 
 

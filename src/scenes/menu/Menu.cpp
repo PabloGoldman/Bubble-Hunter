@@ -57,8 +57,6 @@ void Menu::Input(sf::RenderWindow* window)
 {
 	sf::Event event;
 
-	bool first = true;
-
 	while (window->pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			window->close();
@@ -136,19 +134,23 @@ void Menu::CheckOptionState(sf::Event& event)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		std::cout << "APRETASTE FLECHITA ABAJO GORDO TROLO\n";
+		std::cout << "APRETASTE FLECHITA ABAJO\n";
 		switch (menuScene)
 		{
 		case MenuScene::PLAY:
+			std::cout << "ESTAS EN PLAY\n";
 			menuScene = MenuScene::OPTIONS;
 			break;
 		case MenuScene::OPTIONS:
+			std::cout << "ESTAS EN OPTIONS\n";
 			menuScene = MenuScene::CREDITS;
 			break;
 		case MenuScene::CREDITS:
+			std::cout << "ESTAS EN CREDITS\n";
 			menuScene = MenuScene::EXIT;
 			break;
 		case MenuScene::EXIT:
+			std::cout << "ESTAS EN EXIT\n";
 			menuScene = MenuScene::PLAY;
 			break;
 		default:
@@ -157,7 +159,7 @@ void Menu::CheckOptionState(sf::Event& event)
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		std::cout << "APRETASTE FLECHITA ARRIBA GORDO TROLO\n";
+		std::cout << "APRETASTE FLECHITA ARRIBA\n";
 		switch (menuScene)
 		{
 		case MenuScene::PLAY:

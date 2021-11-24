@@ -21,7 +21,7 @@ private:
 
 	bool inPause;
 
-	void Input();
+	void Input(sf::RenderWindow* window);
 	void Update();
 	void Draw(sf::RenderWindow* window);
 	void SetPlayerData(Player* player, int posX, int posY);
@@ -30,6 +30,9 @@ private:
 	void DrawPlayerPoints(Player* player, int x, int y, sf::RenderWindow* window);
 	void ResetPlayerData(Player* player);
 	void ResetData(Player* player);
+
+	void CheckPlayerMovementInput(sf::Event event);
+	void CheckPause();
 
 public:
 	Gameplay();

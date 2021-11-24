@@ -2,7 +2,8 @@
 
 Player::Player()
 {
-	rectangle.setSize(sf::Vector2f(10, 100));
+	rectangle.setSize(sf::Vector2f(100, 100));
+	rectangle.setFillColor(sf::Color::Green);
 	speed = 300;
 	points = 0;
 }
