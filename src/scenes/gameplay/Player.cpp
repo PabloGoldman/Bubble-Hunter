@@ -4,7 +4,7 @@ Player::Player()
 {
 	rectangle.setSize(sf::Vector2f(100, 100));
 	rectangle.setFillColor(sf::Color::Green);
-	speed = 300;
+	speed = 10;
 	points = 0;
 }
 
@@ -31,6 +31,24 @@ int Player::GetSpeed()
 int Player::GetPoints()
 {
 	return points;
+}
+
+void Player::Input(sf::RenderWindow* window)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		rectangle.setPosition(rectangle.getPosition().x + speed, rectangle.getPosition().y);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		rectangle.setPosition(rectangle.getPosition().x - speed, rectangle.getPosition().y);
+	}
+}
+
+
+void Player::Update()
+{
+
 }
 
 void Player::SetSpeed(int _speed)

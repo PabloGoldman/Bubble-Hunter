@@ -68,6 +68,7 @@ void Gameplay::Input(sf::RenderWindow* window)
 		if (event.type == sf::Event::KeyPressed)
 		{
 			CheckPause();
+			player->Input(window);
 		}
 	}
 

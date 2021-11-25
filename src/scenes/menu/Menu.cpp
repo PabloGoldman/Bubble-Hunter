@@ -188,7 +188,7 @@ void Menu::CheckInput(sf::Event& event)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
-		std::cout << "APRETASTE ENTER GORDO TROLO\n";
+		std::cout << "APRETASTE ENTER\n";
 		switch (menuScene)
 		{
 		case MenuScene::PLAY:

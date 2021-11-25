@@ -9,6 +9,7 @@ private:
 	int speed;
 	int points;
 
+
 public:
 	Player();
 	~Player();
@@ -19,6 +20,9 @@ public:
 	int GetSpeed();
 	int GetPoints();
 
+	void Input(sf::RenderWindow* window);
+
+	void Update();
 	void SetSpeed(int _speed);
 	void SetColor(sf::Color _color);
 	void SetWidth(int _width);

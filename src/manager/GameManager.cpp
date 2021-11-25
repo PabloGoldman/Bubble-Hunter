@@ -45,9 +45,6 @@ void GameManager::RunGame()
 {
 	RenderWindow* window = new RenderWindow(VideoMode(screenWidth, screenHeight), "Dauuuu");
 
-	window->setKeyRepeatEnabled(false);
-
-
 	while (window->isOpen() && isPlaying)    // Detect window close button or ESC key
 	{
 		window->clear();
