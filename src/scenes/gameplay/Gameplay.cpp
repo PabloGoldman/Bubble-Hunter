@@ -123,7 +123,7 @@ void Gameplay::ResetPlayerData(Player* player)
 
 void Gameplay::InitGameplay()
 {
-	SetPlayerData(player, 0, screenHeight / 2);
+	SetPlayerData(player, screenWidth / 2 - 70, screenHeight / 2 + 100);
 
 	SetInGamePauseData();
 
