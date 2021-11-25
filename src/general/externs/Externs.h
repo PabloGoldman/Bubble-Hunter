@@ -7,6 +7,8 @@
 namespace ExternVars
 {
 
+	extern sf::Vector2f window;
+
 	extern sf::Font font;
 
 

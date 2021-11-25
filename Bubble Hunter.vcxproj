@@ -29,6 +29,7 @@
     <ClCompile Include="src\manager\GameManager.cpp" />
     <ClCompile Include="src\scenes\credits\Credits.cpp" />
     <ClCompile Include="src\scenes\endscreen\EndGameScreen.cpp" />
+    <ClCompile Include="src\scenes\gameplay\Ball\Ball.cpp" />
     <ClCompile Include="src\scenes\gameplay\Gameplay.cpp" />
     <ClCompile Include="src\scenes\gameplay\inGamePause.cpp" />
     <ClCompile Include="src\scenes\gameplay\Player.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="src\manager\GameManager.h" />
     <ClInclude Include="src\scenes\credits\Credits.h" />
     <ClInclude Include="src\scenes\endscreen\EndGameScreen.h" />
+    <ClInclude Include="src\scenes\gameplay\Ball\Ball.h" />
     <ClInclude Include="src\scenes\gameplay\Gameplay.h" />
     <ClInclude Include="src\scenes\gameplay\inGamePause.h" />
     <ClInclude Include="src\scenes\gameplay\Player.h" />

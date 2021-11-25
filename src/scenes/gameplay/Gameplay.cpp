@@ -15,6 +15,7 @@ using namespace sf;
 Gameplay::Gameplay()
 {
 	player = new Player();
+	ball = new Ball();
 	hud = new HUD();
 	pause = new InGamePause();
 
@@ -76,13 +77,13 @@ void Gameplay::Input(sf::RenderWindow* window)
 
 void Gameplay::Update()
 {
-
+	ball->Move();
 }
 
 void Gameplay::Draw(sf::RenderWindow* window)
 {
 	DrawPlayer(player, window);
-
+	ball->Draw(window);
 	DrawPlayerPoints(player, 300, 50, window);
 }
 

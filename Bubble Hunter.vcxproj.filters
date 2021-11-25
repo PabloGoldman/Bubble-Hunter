@@ -19,6 +19,9 @@
     <ClCompile Include="src\general\externs\Externs.cpp">
       <Filter>extern</Filter>
     </ClCompile>
+    <ClCompile Include="src\scenes\gameplay\Ball\Ball.cpp">
+      <Filter>Ball</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\general\audiomanager\AudioManager.h" />
@@ -38,10 +41,16 @@
     <ClInclude Include="src\general\externs\Externs.h">
       <Filter>extern</Filter>
     </ClInclude>
+    <ClInclude Include="src\scenes\gameplay\Ball\Ball.h">
+      <Filter>Ball</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="extern">
       <UniqueIdentifier>{4ec51ed6-de88-4b97-a586-4e9a75b670e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ball">
+      <UniqueIdentifier>{081323c3-0dca-4214-b597-8a1a69018906}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -8,6 +8,8 @@
 #include "../endscreen/EndGameScreen.h"
 #include "../../general/audiomanager/AudioManager.h"
 
+#include "Ball/Ball.h"
+
 
 class Gameplay
 {
@@ -18,6 +20,7 @@ private:
 	InGamePause* pause;
 	HUD* hud;
 	Player* player;
+	Ball* ball;
 
 	bool inPause;
 
