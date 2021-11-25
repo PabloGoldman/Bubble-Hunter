@@ -1,5 +1,9 @@
 #include "Player.h"
 
+const int screenWidth = 800;
+const int screenHeight = 450;
+
+
 Player::Player()
 {
 	rectangle.setSize(sf::Vector2f(100, 100));
@@ -35,11 +39,11 @@ int Player::GetPoints()
 
 void Player::Input(sf::RenderWindow* window)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && rectangle.getPosition().x < screenWidth - rectangle.getSize().x)
 	{
 		rectangle.setPosition(rectangle.getPosition().x + speed, rectangle.getPosition().y);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && rectangle.getPosition().x > 0)
 	{
 		rectangle.setPosition(rectangle.getPosition().x - speed, rectangle.getPosition().y);
 	}
