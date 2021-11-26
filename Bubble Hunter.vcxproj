@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Arrow.cpp" />
     <ClCompile Include="src\general\audiomanager\AudioManager.cpp" />
     <ClCompile Include="src\general\button\Button.cpp" />
     <ClCompile Include="src\general\externs\Externs.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="src\scenes\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Arrow.h" />
     <ClInclude Include="src\general\audiomanager\AudioManager.h" />
     <ClInclude Include="src\general\button\Button.h" />
     <ClInclude Include="src\general\externs\Externs.h" />

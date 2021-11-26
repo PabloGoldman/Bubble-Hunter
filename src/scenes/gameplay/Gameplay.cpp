@@ -10,11 +10,18 @@ const int screenHeight = 450;
 const int fontSize = 40;
 const int pointsToWin = 10;
 
+//const int totalArrows = 2;
+
 using namespace sf;
 
 Gameplay::Gameplay()
 {
-	player = new Player();
+	for (int i = 0; i < 2; i++)
+	{
+		arrow[i] = new Arrow();
+	}
+
+	player = new Player(arrow);
 	ball = new Ball();
 	hud = new HUD();
 	pause = new InGamePause();
@@ -27,6 +34,11 @@ Gameplay::~Gameplay()
 	delete player;
 	delete hud;
 	delete pause;
+
+	for (int i = 0; i < totalArrows; i++)
+	{
+		delete arrow[i];
+	}
 }
 
 void Gameplay::InGame(sf::RenderWindow* window)
@@ -78,12 +90,24 @@ void Gameplay::Input(sf::RenderWindow* window)
 void Gameplay::Update()
 {
 	ball->Move();
+
+	player->Update();
+
+	for (int i = 0; i < 2; i++)
+	{
+		arrow[i]->Update();
+	}
 }
 
 void Gameplay::Draw(sf::RenderWindow* window)
 {
 	DrawPlayer(player, window);
 	ball->Draw(window);
+	for (int i = 0; i < 2; i++)
+	{
+		arrow[i]->Draw(window);
+	}
+
 	DrawPlayerPoints(player, 300, 50, window);
 }
 

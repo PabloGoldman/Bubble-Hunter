@@ -9,6 +9,7 @@
 #include "../../general/audiomanager/AudioManager.h"
 
 #include "Ball/Ball.h"
+#include "../Arrow.h"
 
 
 class Gameplay
@@ -21,6 +22,7 @@ private:
 	HUD* hud;
 	Player* player;
 	Ball* ball;
+	Arrow* arrow[2];
 
 	bool inPause;
 

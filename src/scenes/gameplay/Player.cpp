@@ -3,14 +3,22 @@
 const int screenWidth = 800;
 const int screenHeight = 450;
 
+//const int totalArrows = 2;
 
-Player::Player()
+
+Player::Player(Arrow* arr[2])
 {
+	for (int i = 0; i < 2; i++)
+	{
+		arrow[i] = arr[i];
+	}
+
 	rectangle.setSize(sf::Vector2f(100, 100));
 	rectangle.setFillColor(sf::Color::Green);
 	speed = 10;
 	points = 0;
 }
+
 
 Player::~Player()
 {
@@ -46,6 +54,18 @@ void Player::Input(sf::RenderWindow* window)
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && rectangle.getPosition().x > 0)
 	{
 		rectangle.setPosition(rectangle.getPosition().x - speed, rectangle.getPosition().y);
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		for (int i = 0; i < totalArrows; i++)
+		{
+			if (!arrow[i]->GetIsActive())
+			{
+				arrow[i]->UseArrow(rectangle.getPosition().x + rectangle.getSize().x / 2);
+				i = 2;
+			}
+		}
 	}
 }
 

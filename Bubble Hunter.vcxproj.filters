@@ -22,6 +22,7 @@
     <ClCompile Include="src\scenes\gameplay\Ball\Ball.cpp">
       <Filter>Ball</Filter>
     </ClCompile>
+    <ClCompile Include="Arrow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\general\audiomanager\AudioManager.h" />
@@ -44,6 +45,7 @@
     <ClInclude Include="src\scenes\gameplay\Ball\Ball.h">
       <Filter>Ball</Filter>
     </ClInclude>
+    <ClInclude Include="Arrow.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="extern">

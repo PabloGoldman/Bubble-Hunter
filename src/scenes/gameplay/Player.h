@@ -1,9 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../Arrow.h"
+
+const int totalArrows = 2;
 
 class Player
 {
 private:
+	Arrow* arrow[2];
+
 	sf::RectangleShape rectangle;
 	sf::Color color;
 	int speed;
@@ -11,7 +16,7 @@ private:
 
 
 public:
-	Player();
+	Player(Arrow* arr[totalArrows]);
 	~Player();
 
 	sf::RectangleShape GetRectangle();
