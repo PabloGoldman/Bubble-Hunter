@@ -226,7 +226,7 @@ void Gameplay::Collision()
 
 void Gameplay::SpawnBalls()
 {
-	int spawnOffSet = 25; //Hace que aparezcan a los costados de la flecha, pero que no la choquen
+	//Hace que aparezcan a los costados de la flecha, pero que no la choquen
 
 	if (ball->GetIfCollided())
 	{
@@ -239,38 +239,28 @@ void Gameplay::SpawnBalls()
 			}
 		}
 	}
-
 	//Spawneo de las bolas chiquitas
 
 	//Si despawnea la primera medium ball
-	if (mediumBall[0]->GetIfCollided()) //Si colisiona la primera medium ball
-	{
-		for (int i = 0; i < 2; i++)
-		{
-			if (!smallBall[i]->IsActive() && !smallBall[i]->GetIfCollided())
-			{
-				smallBall[i]->SetPosition({ mediumBall[0]->GetPosition() });
-				smallBall[i]->SetActive(true);
-
-				if (i == 1)
-				{
-					smallBall[i]->ChangeSpeedDirection();
-				}
-			}
-		}
-	}
+	MediumBallCollision(0);
 
 	//Si despawnea la segunda medium ball
-	if (mediumBall[1]->GetIfCollided()) //si colisiona la segunda medium ball
+	MediumBallCollision(1);
+
+}
+
+void Gameplay::MediumBallCollision(int ball)
+{
+	if (mediumBall[ball]->GetIfCollided()) //Si colisiona la medium ball
 	{
-		for (int i = 2; i < 4; i++)
+		for (int i = ball * 2; i < (ball + 1) * 2; i++)
 		{
 			if (!smallBall[i]->IsActive() && !smallBall[i]->GetIfCollided())
 			{
-				smallBall[i]->SetPosition({ mediumBall[1]->GetPosition() });
+				smallBall[i]->SetPosition({ mediumBall[ball]->GetPosition() });
 				smallBall[i]->SetActive(true);
 
-				if (i == 3)
+				if (i == ball * 2)
 				{
 					smallBall[i]->ChangeSpeedDirection();
 				}

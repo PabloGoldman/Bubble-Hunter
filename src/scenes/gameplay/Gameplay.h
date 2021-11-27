@@ -61,6 +61,8 @@ public:
 	void Collision();
 	void SpawnBalls();
 
+	void MediumBallCollision(int ball);
+
 
 	//bool Intersects(Arrow* rec, Ball* circle);
 
