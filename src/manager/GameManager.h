@@ -39,7 +39,7 @@ public:
 	void InitAllGameData();
 	void InitAllMenuData();
 	void InitAllCreditsData();
-	void InitAllChooseModeData();
+	//void InitAllChooseModeData();
 	void InitAllRulesData();
 	void InitAllEndGameScreenData();
 	void PlayMusicInMenu();

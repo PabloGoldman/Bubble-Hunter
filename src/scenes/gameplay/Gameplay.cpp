@@ -148,7 +148,6 @@ void Gameplay::Draw(sf::RenderWindow* window)
 {
 	DrawPlayer(player, window);
 
-
 	ball->Draw(window);
 
 	for (int i = 0; i < mediumBalls; i++)
@@ -161,13 +160,12 @@ void Gameplay::Draw(sf::RenderWindow* window)
 		smallBall[i]->Draw(window);
 	}
 
-
 	for (int i = 0; i < 2; i++)
 	{
 		arrow[i]->Draw(window);
 	}
 
-	DrawPlayerPoints(player, 300, 50, window);
+	DrawPlayerPoints(player, screenWidth / 2 - 15, 50, window);
 }
 
 void Gameplay::SetSceneManager(SceneManager* sc)
