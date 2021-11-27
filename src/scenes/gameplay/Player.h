@@ -14,6 +14,9 @@ private:
 	int speed;
 	int points;
 
+	bool hasPowerUp;
+	int actualArrows;
+
 
 public:
 	Player(Arrow* arr[totalArrows]);

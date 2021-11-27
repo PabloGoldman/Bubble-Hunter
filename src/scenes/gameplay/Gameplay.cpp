@@ -43,7 +43,7 @@ Gameplay::Gameplay()
 		smallBall[i]->SetActive(false);
 		smallBall[i]->SetArrows(arrow[0], arrow[1]);
 	}
-	
+
 	hud = new HUD();
 	pause = new InGamePause();
 
@@ -228,26 +228,53 @@ void Gameplay::SpawnBalls()
 {
 	int spawnOffSet = 25; //Hace que aparezcan a los costados de la flecha, pero que no la choquen
 
-	if (!ball->IsActive())
+	if (ball->GetIfCollided())
 	{
 		for (int i = 0; i < mediumBalls; i++)
 		{
-			if (!mediumBall[i]->IsActive()) //Primera vez que choca con la flecha
+			if (!mediumBall[i]->IsActive() && !mediumBall[i]->GetIfCollided()) 
 			{
 				mediumBall[i]->SetPosition({ ball->GetPosition() });
+				mediumBall[i]->SetActive(true);
+			}
+		}
+	}
 
-				for (int i = 0; i < totalArrows; i++)
+	//Spawneo de las bolas chiquitas
+
+	//Si despawnea la primera medium ball
+	if (mediumBall[0]->GetIfCollided()) //Si colisiona la primera medium ball
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			if (!smallBall[i]->IsActive() && !smallBall[i]->GetIfCollided())
+			{
+				smallBall[i]->SetPosition({ mediumBall[0]->GetPosition() });
+				smallBall[i]->SetActive(true);
+
+				if (i == 1)
 				{
-					arrow[i]->SetActive(false);  //Despawnea las flechas
+					smallBall[i]->ChangeSpeedDirection();
 				}
 			}
+		}
+	}
 
-			if (i == 0)
+	//Si despawnea la segunda medium ball
+	if (mediumBall[1]->GetIfCollided()) //si colisiona la segunda medium ball
+	{
+		for (int i = 2; i < 4; i++)
+		{
+			if (!smallBall[i]->IsActive() && !smallBall[i]->GetIfCollided())
 			{
-				mediumBall[i]->ChangeSpeedDirection(true);
-			}
+				smallBall[i]->SetPosition({ mediumBall[1]->GetPosition() });
+				smallBall[i]->SetActive(true);
 
-			mediumBall[i]->SetActive(true);
+				if (i == 3)
+				{
+					smallBall[i]->ChangeSpeedDirection();
+				}
+			}
 		}
 	}
 }

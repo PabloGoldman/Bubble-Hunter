@@ -38,6 +38,8 @@ private:
 	bool goingToRight;
 	bool goingUp;
 
+	bool alreadyCollided;
+
 	void RandomizeMovement();
 
 
@@ -57,11 +59,12 @@ public:
 	float GetRadius();
 	bool IsActive();
 	BallSize GetBallSize();
+	bool GetIfCollided();
 
 	void Move();
 	void Draw(sf::RenderWindow* window);
 	void Collision();
-	void ChangeSpeedDirection(bool right);
+	void ChangeSpeedDirection();
 
 };
 

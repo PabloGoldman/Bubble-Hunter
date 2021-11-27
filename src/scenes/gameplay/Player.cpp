@@ -17,6 +17,8 @@ Player::Player(Arrow* arr[2])
 	rectangle.setFillColor(sf::Color::Green);
 	speed = 10;
 	points = 0;
+
+	hasPowerUp = false;
 }
 
 
@@ -58,12 +60,22 @@ void Player::Input(sf::RenderWindow* window)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		for (int i = 0; i < totalArrows; i++)
+		if (!hasPowerUp)
 		{
-			if (!arrow[i]->GetIsActive())
+			if (!arrow[0]->GetIsActive())
 			{
-				arrow[i]->UseArrow(rectangle.getPosition().x + rectangle.getSize().x / 2);
-				i = 2;
+				arrow[0]->UseArrow(rectangle.getPosition().x + rectangle.getSize().x / 2);
+			}
+		}
+		else
+		{
+			for (int i = 0; i < totalArrows; i++)
+			{
+				if (!arrow[i]->GetIsActive())
+				{
+					arrow[i]->UseArrow(rectangle.getPosition().x + rectangle.getSize().x / 2);
+					i = 2;
+				}
 			}
 		}
 	}

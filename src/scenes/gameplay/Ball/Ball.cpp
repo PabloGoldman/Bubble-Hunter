@@ -27,7 +27,8 @@ Ball::Ball(BallSize size)
 	}
 
 
-	active = true;          
+	active = true;   
+	alreadyCollided = false;
 						   
 	shape = sf::CircleShape();
 	shape.setRadius(rad);
@@ -92,6 +93,11 @@ BallSize Ball::GetBallSize()
 	return size;
 }
 
+bool Ball::GetIfCollided()
+{
+	return alreadyCollided;
+}
+
 void Ball::Move()
 {
 	if (active)
@@ -115,17 +121,19 @@ void Ball::Collision()
 	{
 		if (shape.getGlobalBounds().intersects(arrow[i]->GetRectangle().getGlobalBounds()))
 		{
-			active = false;
+			if (active)
+			{
+				arrow[i]->SetActive(false);
+				active = false;
+				alreadyCollided = true;
+			}
 		}
 	}
 }
 
-void Ball::ChangeSpeedDirection(bool right)
+void Ball::ChangeSpeedDirection()
 {
-	if (!right)
-	{
-		VELOCITY.x *= -1;
-	}
+	VELOCITY.x *= -1;
 }
 
 
