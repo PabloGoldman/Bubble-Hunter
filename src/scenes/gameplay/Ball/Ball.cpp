@@ -7,11 +7,28 @@ void Ball::RandomizeMovement()
 	goingUp = rand() % 2 == 0 ? true : false;
 }
 
-Ball::Ball()
-{          
+Ball::Ball(BallSize size)
+{   
+	int rad = 0;
+
+	switch (size)
+	{
+	case BallSize::BIG:
+		rad = 10;
+		break;
+	case BallSize::MEDIUM:
+		rad = 5;
+		break;
+	case BallSize::SMALL:
+		rad = 2;
+		break;
+	default:
+		break;
+	}
+
+
 	active = true;          
 						   
-	int rad = 10;
 	shape = sf::CircleShape();
 	shape.setRadius(rad);
 	shape.setPosition(sf::Vector2f(ExternVars::window.x / 2, ExternVars::window.y / 2));
@@ -25,6 +42,7 @@ Ball::Ball()
 
 Ball::~Ball()
 {
+
 }
 
 void Ball::SetPosition(sf::Vector2f p)
@@ -46,6 +64,13 @@ void Ball::SetSize(BallSize bs)
 {
 	size = bs;
 }
+
+void Ball::SetArrows(Arrow* arr1, Arrow* arr2)
+{
+	arrow[0] = arr1;
+	arrow[1] = arr2;
+}
+
 
 sf::Vector2f Ball::GetPosition()
 {
@@ -69,14 +94,40 @@ BallSize Ball::GetBallSize()
 
 void Ball::Move()
 {
-	MoveInXAxis();
-	MoveInYAxis();
+	if (active)
+	{
+		MoveInXAxis();
+		MoveInYAxis();
+	}
 }
 
 void Ball::Draw(sf::RenderWindow* window)
 {
-	window->draw(shape);
+	if (active)
+	{
+		window->draw(shape);
+	}
 }
+
+void Ball::Collision()
+{
+	for (int i = 0; i < 2; i++)
+	{
+		if (shape.getGlobalBounds().intersects(arrow[i]->GetRectangle().getGlobalBounds()))
+		{
+			active = false;
+		}
+	}
+}
+
+void Ball::ChangeSpeedDirection(bool right)
+{
+	if (!right)
+	{
+		VELOCITY.x *= -1;
+	}
+}
+
 
 void Ball::MoveInXAxis()
 {

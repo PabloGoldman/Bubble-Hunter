@@ -10,6 +10,10 @@ const int screenHeight = 450;
 const int fontSize = 40;
 const int pointsToWin = 10;
 
+const int bigBalls = 1;
+const int mediumBalls = 2;
+const int smallBalls = 4;
+
 //const int totalArrows = 2;
 
 using namespace sf;
@@ -22,7 +26,24 @@ Gameplay::Gameplay()
 	}
 
 	player = new Player(arrow);
-	ball = new Ball();
+
+	ball = new Ball(BallSize::BIG);
+	ball->SetArrows(arrow[0], arrow[1]);
+
+	for (int i = 0; i < mediumBalls; i++)
+	{
+		mediumBall[i] = new Ball(BallSize::MEDIUM);
+		mediumBall[i]->SetActive(false);
+		mediumBall[i]->SetArrows(arrow[0], arrow[1]);
+	}
+
+	for (int i = 0; i < smallBalls; i++)
+	{
+		smallBall[i] = new Ball(BallSize::SMALL);
+		smallBall[i]->SetActive(false);
+		smallBall[i]->SetArrows(arrow[0], arrow[1]);
+	}
+	
 	hud = new HUD();
 	pause = new InGamePause();
 
@@ -38,6 +59,18 @@ Gameplay::~Gameplay()
 	for (int i = 0; i < totalArrows; i++)
 	{
 		delete arrow[i];
+	}
+
+	delete ball;
+
+	for (int i = 0; i < mediumBalls; i++)
+	{
+		delete mediumBall[i];
+	}
+
+	for (int i = 0; i < smallBalls; i++)
+	{
+		delete smallBall[i];
 	}
 }
 
@@ -84,12 +117,24 @@ void Gameplay::Input(sf::RenderWindow* window)
 			player->Input(window);
 		}
 	}
-
 }
 
 void Gameplay::Update()
 {
+	Collision();
+	SpawnBalls();
+
 	ball->Move();
+
+	for (int i = 0; i < mediumBalls; i++)
+	{
+		mediumBall[i]->Move();
+	}
+
+	for (int i = 0; i < smallBalls; i++)
+	{
+		smallBall[i]->Move();
+	}
 
 	player->Update();
 
@@ -102,7 +147,21 @@ void Gameplay::Update()
 void Gameplay::Draw(sf::RenderWindow* window)
 {
 	DrawPlayer(player, window);
+
+
 	ball->Draw(window);
+
+	for (int i = 0; i < mediumBalls; i++)
+	{
+		mediumBall[i]->Draw(window);
+	}
+
+	for (int i = 0; i < smallBalls; i++)
+	{
+		smallBall[i]->Draw(window);
+	}
+
+
 	for (int i = 0; i < 2; i++)
 	{
 		arrow[i]->Draw(window);
@@ -127,11 +186,6 @@ void Gameplay::ResetData(Player* player)
 	ResetPlayerData(player);
 }
 
-void Gameplay::CheckPlayerMovementInput(sf::Event event)
-{
-
-}
-
 void Gameplay::CheckPause()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
@@ -153,6 +207,47 @@ void Gameplay::InitGameplay()
 	SetInGamePauseData();
 
 	pause->SetSceneManager(scene);
+}
+
+void Gameplay::Collision()
+{
+	ball->Collision();
+
+	for (int i = 0; i < mediumBalls; i++)
+	{
+		mediumBall[i]->Collision();
+	}
+
+	for (int i = 0; i < smallBalls; i++)
+	{
+		smallBall[i]->Collision();
+	}
+}
+
+void Gameplay::SpawnBalls()
+{
+	if (!ball->IsActive())
+	{
+		for (int i = 0; i < mediumBalls; i++)
+		{
+			if (!mediumBall[i]->IsActive())
+			{
+				mediumBall[i]->SetPosition({ ball->GetPosition() });
+			}
+
+			mediumBall[i]->SetActive(true);
+
+			if (i == 0)
+			{
+				mediumBall[i]->ChangeSpeedDirection(false);
+			}
+			else                                                //Aca hay que hacer que una salga para un lado y la otra
+																//del otro lado :D
+			{
+				mediumBall[i]->ChangeSpeedDirection(true);
+			}
+		}
+	}
 }
 
 void Gameplay::SetEndGameScreen(EndGameScreen* eg)

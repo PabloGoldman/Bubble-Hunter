@@ -21,7 +21,12 @@ private:
 	InGamePause* pause;
 	HUD* hud;
 	Player* player;
+
+
 	Ball* ball;
+	Ball* mediumBall[2];
+	Ball* smallBall[4];
+
 	Arrow* arrow[2];
 
 	bool inPause;
@@ -36,7 +41,6 @@ private:
 	void ResetPlayerData(Player* player);
 	void ResetData(Player* player);
 
-	void CheckPlayerMovementInput(sf::Event event);
 	void CheckPause();
 
 public:
@@ -53,6 +57,12 @@ public:
 	void SetSceneManager(SceneManager* sc);
 	void InGame(sf::RenderWindow* window);
 	void InitGameplay();
+
+	void Collision();
+	void SpawnBalls();
+
+
+	//bool Intersects(Arrow* rec, Ball* circle);
 
 };
 
