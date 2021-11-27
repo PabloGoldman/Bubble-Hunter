@@ -28,6 +28,8 @@ class Arrow
 		void Movement();
 		void UseArrow(float x);
 
+		void SetActive(bool active);
+
 		void Draw(sf::RenderWindow* window);
 };
 

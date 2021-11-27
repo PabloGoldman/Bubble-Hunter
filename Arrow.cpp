@@ -73,6 +73,11 @@ void Arrow::UseArrow(float posX)
 	rectangle.setPosition(posX, rectangle.getPosition().y);
 }
 
+void Arrow::SetActive(bool active)
+{
+	isActive = active;
+}
+
 void Arrow::Draw(sf::RenderWindow* window)
 {
 	window->draw(rectangle);

@@ -226,26 +226,28 @@ void Gameplay::Collision()
 
 void Gameplay::SpawnBalls()
 {
+	int spawnOffSet = 25; //Hace que aparezcan a los costados de la flecha, pero que no la choquen
+
 	if (!ball->IsActive())
 	{
 		for (int i = 0; i < mediumBalls; i++)
 		{
-			if (!mediumBall[i]->IsActive())
+			if (!mediumBall[i]->IsActive()) //Primera vez que choca con la flecha
 			{
 				mediumBall[i]->SetPosition({ ball->GetPosition() });
-			}
 
-			mediumBall[i]->SetActive(true);
+				for (int i = 0; i < totalArrows; i++)
+				{
+					arrow[i]->SetActive(false);  //Despawnea las flechas
+				}
+			}
 
 			if (i == 0)
 			{
-				mediumBall[i]->ChangeSpeedDirection(false);
-			}
-			else                                                //Aca hay que hacer que una salga para un lado y la otra
-																//del otro lado :D
-			{
 				mediumBall[i]->ChangeSpeedDirection(true);
 			}
+
+			mediumBall[i]->SetActive(true);
 		}
 	}
 }
