@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+#include "general/externs/Externs.h"
+
 #include <SFML\Window\Window.hpp>
 #include <SFML\Window\Keyboard.hpp>
 
@@ -227,32 +229,55 @@ void Gameplay::Collision()
 
 void Gameplay::CheckPlayerBallCollision()
 {
-	if (ball->GetShape().getGlobalBounds().intersects(player->GetRectangle().getGlobalBounds()))
+	if (ball->GetShape().getGlobalBounds().intersects(player->GetRectangle().getGlobalBounds()) 
+		&& ball->IsActive())
 	{
-		std::cout << "asd";
+		ResetGameplay();
 	}
 
 	for (int i = 0; i < mediumBalls; i++)
 	{
-		if(mediumBall[i]->GetShape().getGlobalBounds().intersects(player->GetRectangle().getGlobalBounds()))
+		if(mediumBall[i]->GetShape().getGlobalBounds().intersects(player->GetRectangle().getGlobalBounds()) 
+			&& mediumBall[i]->IsActive())
 		{
-			std::cout << "asd";
+			ResetGameplay();
 		}
 	}
 
 	for (int i = 0; i < smallBalls; i++)
 	{
-		if (smallBall[i]->GetShape().getGlobalBounds().intersects(player->GetRectangle().getGlobalBounds()))
+		if (smallBall[i]->GetShape().getGlobalBounds().intersects(player->GetRectangle().getGlobalBounds()) 
+			&& smallBall[i]->IsActive())
 		{
-			std::cout << "asd";
+			ResetGameplay();
 		}
 	}
 	
 }
 
+void Gameplay::ResetGameplay()
+{
+	player->SetPoints(0);
+
+	ball->SetActive(true);
+	ball->SetIfCollided(false);
+	ball->SetPosition(sf::Vector2f(ExternVars::window.x / 2 - 20, ExternVars::window.y / 2));
+
+	for (int i = 0; i < mediumBalls; i++)
+	{
+		mediumBall[i]->SetActive(false);
+		mediumBall[i]->SetIfCollided(false);
+	}
+
+	for (int i = 0; i < smallBalls; i++)
+	{
+		smallBall[i]->SetActive(false);
+		smallBall[i]->SetIfCollided(false);
+	}
+}
+
 void Gameplay::SpawnBalls()
 {
-	//Hace que aparezcan a los costados de la flecha, pero que no la choquen
 
 	if (ball->GetIfCollided())
 	{

@@ -64,6 +64,8 @@ public:
 	void MediumBallCollision(int ball);
 	void CheckPlayerBallCollision();
 
+	void ResetGameplay();
+
 
 	//bool Intersects(Arrow* rec, Ball* circle);
 

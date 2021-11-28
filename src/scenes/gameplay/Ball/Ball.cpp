@@ -144,19 +144,24 @@ void Ball::ChangeSpeedDirection()
 	VELOCITY.x *= -1;
 }
 
+void Ball::SetIfCollided(bool col)
+{
+	alreadyCollided = col;
+}
+
 
 void Ball::MoveInXAxis()
 {
 	
-	if (shape.getPosition().x > ExternVars::window.x - GetRadius()*2)
+	if (shape.getPosition().x > ExternVars::window.x - GetRadius()*2 && goingToRight)
 	{
 		shape.setPosition(sf::Vector2f(ExternVars::window.x - GetRadius()*2,shape.getPosition().y));
 		goingToRight = false;
 	}
 	
-	if (shape.getPosition().x < 0)
+	if (shape.getPosition().x < 0 && !goingToRight)
 	{
-		shape.setPosition(sf::Vector2f(0, shape.getPosition().y));
+		/*shape.setPosition(sf::Vector2f(0, shape.getPosition().y));*/
 		goingToRight = true;
 	}
 	
@@ -167,6 +172,21 @@ void Ball::MoveInXAxis()
 	else
 	{
 		shape.setPosition(sf::Vector2f(shape.getPosition().x - VELOCITY.x, shape.getPosition().y));
+	}
+
+	if (shape.getPosition().x > ExternVars::window.x)
+	{
+		shape.setPosition(sf::Vector2f(GetRadius() * 2, shape.getPosition().y));
+	}
+
+	if (shape.getPosition().x < 0)
+	{
+		shape.setPosition(sf::Vector2f(ExternVars::window.x - GetRadius() * 2, shape.getPosition().y));
+	}
+
+	if (shape.getPosition().y > ExternVars::window.y)
+	{
+		shape.setPosition(sf::Vector2f(shape.getPosition().x, 1));
 	}
 
 }

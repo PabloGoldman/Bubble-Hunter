@@ -70,6 +70,7 @@ public:
 	void Draw(sf::RenderWindow* window);
 	void Collision();
 	void ChangeSpeedDirection();
+	void SetIfCollided(bool col);
 
 };
 
