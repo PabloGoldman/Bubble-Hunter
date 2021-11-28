@@ -5,6 +5,7 @@
 class Arrow
 {
 	private:
+
 		sf::RectangleShape rectangle;
 		sf::Color color;
 		float speed;

@@ -7,9 +7,11 @@ void Ball::RandomizeMovement()
 	goingUp = rand() % 2 == 0 ? true : false;
 }
 
-Ball::Ball(BallSize size)
+Ball::Ball(BallSize size, Player* player)
 {   
 	int rad = 0;
+
+	this->player = player;
 
 	switch (size)
 	{
@@ -126,6 +128,7 @@ void Ball::Collision()
 				arrow[i]->SetActive(false);
 				active = false;
 				alreadyCollided = true;
+				player->SetPoints(player->GetPoints() + 1);
 			}
 		}
 	}

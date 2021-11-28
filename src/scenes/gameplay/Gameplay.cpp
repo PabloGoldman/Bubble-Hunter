@@ -20,6 +20,7 @@ using namespace sf;
 
 Gameplay::Gameplay()
 {
+
 	for (int i = 0; i < 2; i++)
 	{
 		arrow[i] = new Arrow();
@@ -27,19 +28,19 @@ Gameplay::Gameplay()
 
 	player = new Player(arrow);
 
-	ball = new Ball(BallSize::BIG);
+	ball = new Ball(BallSize::BIG, player);
 	ball->SetArrows(arrow[0], arrow[1]);
 
 	for (int i = 0; i < mediumBalls; i++)
 	{
-		mediumBall[i] = new Ball(BallSize::MEDIUM);
+		mediumBall[i] = new Ball(BallSize::MEDIUM, player);
 		mediumBall[i]->SetActive(false);
 		mediumBall[i]->SetArrows(arrow[0], arrow[1]);
 	}
 
 	for (int i = 0; i < smallBalls; i++)
 	{
-		smallBall[i] = new Ball(BallSize::SMALL);
+		smallBall[i] = new Ball(BallSize::SMALL, player);
 		smallBall[i]->SetActive(false);
 		smallBall[i]->SetArrows(arrow[0], arrow[1]);
 	}

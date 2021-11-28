@@ -8,6 +8,7 @@
 #include "SFML/Graphics.hpp"
 
 #include "../Arrow.h"
+#include "scenes/gameplay/Player.h"
 
 const float MAX_HEIGHT_GREAT_BALL = 100;
 const float MAX_HEIGHT_MEDIUM_BALL = 80;
@@ -24,6 +25,8 @@ class Ball
 {
 private:
 	sf::CircleShape shape;
+
+	Player* player;
 
 	Arrow* arrow[2];
 
@@ -45,7 +48,7 @@ private:
 
 
 public:
-	Ball(BallSize size);
+	Ball(BallSize size, Player* player);
 	~Ball();
 
 	void SetPosition(sf::Vector2f p);
