@@ -221,6 +221,33 @@ void Gameplay::Collision()
 	{
 		smallBall[i]->Collision();
 	}
+
+	CheckPlayerBallCollision();
+}
+
+void Gameplay::CheckPlayerBallCollision()
+{
+	if (ball->GetShape().getGlobalBounds().intersects(player->GetRectangle().getGlobalBounds()))
+	{
+		std::cout << "asd";
+	}
+
+	for (int i = 0; i < mediumBalls; i++)
+	{
+		if(mediumBall[i]->GetShape().getGlobalBounds().intersects(player->GetRectangle().getGlobalBounds()))
+		{
+			std::cout << "asd";
+		}
+	}
+
+	for (int i = 0; i < smallBalls; i++)
+	{
+		if (smallBall[i]->GetShape().getGlobalBounds().intersects(player->GetRectangle().getGlobalBounds()))
+		{
+			std::cout << "asd";
+		}
+	}
+	
 }
 
 void Gameplay::SpawnBalls()
@@ -266,6 +293,7 @@ void Gameplay::MediumBallCollision(int ball)
 			}
 		}
 	}
+	
 }
 
 void Gameplay::SetEndGameScreen(EndGameScreen* eg)

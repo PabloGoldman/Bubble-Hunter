@@ -63,6 +63,8 @@ public:
 	bool IsActive();
 	BallSize GetBallSize();
 	bool GetIfCollided();
+	sf::CircleShape GetShape();
+
 
 	void Move();
 	void Draw(sf::RenderWindow* window);

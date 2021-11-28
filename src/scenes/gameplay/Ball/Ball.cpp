@@ -100,6 +100,11 @@ bool Ball::GetIfCollided()
 	return alreadyCollided;
 }
 
+sf::CircleShape Ball::GetShape()
+{
+	return shape;
+}
+
 void Ball::Move()
 {
 	if (active)
