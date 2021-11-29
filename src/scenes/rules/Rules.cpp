@@ -77,11 +77,11 @@ void Rules::InitRules()
 	line3[0].setString("You can shoot an arrow too with the SPACE bar.");
 
 	line1[1].setString("There are 3 sizes of Bubbles.");
-	line2[1].setString("Everyone is smaller than the previous one.");
-	line3[1].setString("When the character hits one bubble with an arrow, it win split in two.");
+	line2[1].setString("Every ball is smaller than the previous one.");
+	line3[1].setString("When the character hits one bubble with an arrow, it will split in two.");
 
-	line1[2].setString("The character has 3 lifes.");
-	line2[2].setString("Everytime it collides with a bubble, will lose a life.");
+	line1[2].setString("You can pause the game with 'P'.");
+	line2[2].setString("Everytime it collides with a bubble, will restart the game.");
 	line3[2].setString("When all lifes are gone, the game will be lost.");
 
 	line1[3].setString("When all bubbles are hunted, you will win the room.");
