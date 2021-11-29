@@ -1,6 +1,8 @@
 #include "EndGameScreen.h"
 #include <SFML\Window\Keyboard.hpp>
 
+#include "general/externs/Externs.h"
+
 const int screenWidth = 800;
 const int screenHeight = 450;
 
@@ -10,18 +12,18 @@ using namespace sf;
 
 EndGameScreen::EndGameScreen()
 {
-	gameFinished = new Button();
-	replay = new Button();
-	quit = new Button();
-
-	player1Win = false;
+	for (int i = 0; i < 2; i++)
+	{
+		_button[i] = new Button();
+	}
 }
 
 EndGameScreen::~EndGameScreen()
 {
-	delete replay;
-	delete quit;
-	delete gameFinished;
+	for (int i = 0; i < 2; i++)
+	{
+		delete _button[i];
+	}
 }
 
 ENDGAMEOPTION EndGameScreen::GetOption()
@@ -31,9 +33,29 @@ ENDGAMEOPTION EndGameScreen::GetOption()
 
 void EndGameScreen::InEndGameScreen(sf::RenderWindow* window)
 {
-	CheckInput();
+	Input(window);
 	Update();
 	DrawEndGameScreen(window);
+}
+
+void EndGameScreen::DrawButton(Button _button[], const char text[], sf::RenderWindow* window)
+{
+	_button->DrawButton(_button->GetRectangle(), text, window);
+}
+
+void EndGameScreen::Input(sf::RenderWindow* window)
+{
+	sf::Event event;
+
+	while (window->pollEvent(event)) {
+		if (event.type == sf::Event::Closed) {
+			window->close();
+		}
+		if (event.type == sf::Event::KeyPressed)
+		{
+			EndGameScreen::CheckInput(event);
+		}
+	}
 }
 
 void EndGameScreen::SetOption(ENDGAMEOPTION _option)
@@ -41,28 +63,44 @@ void EndGameScreen::SetOption(ENDGAMEOPTION _option)
 	option = _option;
 }
 
-void EndGameScreen::CheckInput()
+void EndGameScreen::CheckInput(sf::Event& event)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		if (option == ENDGAMEOPTION::PLAY)
+		switch (option)
+		{
+		case ENDGAMEOPTION::PLAY:
 			option = ENDGAMEOPTION::QUIT;
-		else
+			break;
+		case ENDGAMEOPTION::QUIT:
 			option = ENDGAMEOPTION::PLAY;
+			break;
+		default:
+			break;
+		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-	{
-		if (option == ENDGAMEOPTION::PLAY)
-			sceneManager->SetSceneManager(Scene::GAME);
 
-		else
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+	{
+		switch (option)
+		{
+		case ENDGAMEOPTION::PLAY:
+			sceneManager->SetSceneManager(Scene::GAME);
+			break;
+		case ENDGAMEOPTION::QUIT:
 			sceneManager->SetSceneManager(Scene::MENU);
+			break;
+		default:
+			break;
+		}
 	}
 }
 
 void EndGameScreen::DrawEndGameScreen(sf::RenderWindow* window)
 {
-	
+	DrawButton(_button[0], "PLAY AGAIN", window);
+	DrawButton(_button[1], "EXIT", window);
 }
 
 void EndGameScreen::Update()
@@ -70,37 +108,39 @@ void EndGameScreen::Update()
 	switch (option)
 	{
 	case ENDGAMEOPTION::PLAY:
-		replay->SetActive(true);
-		quit->SetActive(false);
+		_button[(int)ENDGAMEOPTION::PLAY]->SetActive(true);
 		break;
 	case ENDGAMEOPTION::QUIT:
-		replay->SetActive(false);
-		quit->SetActive(true);
+		_button[(int)ENDGAMEOPTION::QUIT]->SetActive(true);
 		break;
-	default:
-		break;
+	}
+
+	for (int i = 0; i < 2; i++)
+	{
+		if (i != (int)option)
+		{
+			_button[i]->SetActive(false);
+			_button[i]->SetColor(sf::Color::Red);
+		}
+		else
+		{
+			_button[i]->SetActive(true);
+			_button[i]->SetColor(sf::Color::Blue);
+		}
 	}
 }
 
-void EndGameScreen::SetButtonsData()
+void EndGameScreen::SetButtonsData(Button _button[], int posX, int posY, int height, int width)
 {
-	gameFinished->SetRectanglePos(screenWidth / 2 - 160, 50);
-	replay->SetRectanglePos(screenWidth / 2 - 100, screenHeight / 2 - 50);
-	quit->SetRectanglePos(screenWidth / 2 - 100, screenHeight / 2 + 50);
+	_button->SetRectanglePos(posX, posY);
 
-	gameFinished->SetHeight(400);
-	gameFinished->SetWidth(700);
-
-	replay->SetHeight(400);
-	replay->SetWidth(700);
-
-	quit->SetHeight(400);
-	quit->SetWidth(400);
+	_button->SetHeight(height);
+	_button->SetWidth(width);
 }
 
-void EndGameScreen::SetWinPlayer(bool player1)
+void EndGameScreen::SetPlayerPoints(int p)
 {
-	player1Win = player1;
+	points = p;
 }
 
 void EndGameScreen::SetSceneManager(SceneManager* sc)
@@ -110,5 +150,6 @@ void EndGameScreen::SetSceneManager(SceneManager* sc)
 
 void EndGameScreen::InitEndGameScreenData()
 {
-	SetButtonsData();
+	SetButtonsData(_button[0],screenWidth / 2 - 120, screenHeight / 2 - 80, 65, 300);
+	SetButtonsData(_button[1], screenWidth / 2 - 120, screenHeight / 2 + 50, 65, 300);
 }

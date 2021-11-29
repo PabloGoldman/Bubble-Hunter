@@ -13,12 +13,12 @@ private:
 
 	SceneManager* sceneManager;
 
-	Button* gameFinished;
-	Button* replay;
-	Button* quit;
+	Button* _button[2];
+
+	sf::RectangleShape background;
 
 
-	void CheckInput();
+	void CheckInput(sf::Event& event);
 	void DrawEndGameScreen(sf::RenderWindow* window);
 	void Update();
 
@@ -28,12 +28,14 @@ public:
 
 	ENDGAMEOPTION GetOption();
 
-	bool player1Win;
+	int points;
 
-	void SetWinPlayer(bool player1);
+	void SetPlayerPoints(int points);
 	void SetOption(ENDGAMEOPTION _option);
 	void SetSceneManager(SceneManager* sc);
-	void SetButtonsData();
+	void SetButtonsData(Button _button[], int posX, int posY, int height, int width);
 	void InitEndGameScreenData();
 	void InEndGameScreen(sf::RenderWindow* window);
+	void DrawButton(Button _button[], const char text[], sf::RenderWindow* window);
+	void Input(sf::RenderWindow* window);
 };
