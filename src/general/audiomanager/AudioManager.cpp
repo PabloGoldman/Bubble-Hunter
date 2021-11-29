@@ -29,10 +29,7 @@ void AudioManager::PlayMenuMusic()
 
 void AudioManager::PlayGameMusic()
 {
-	/*PlayMusicStream(gameMusic);
-	StopMusicStream(menuMusic);
-	SetMusicVolume(gameMusic, standardVolume);
-	UpdateMusicStream(gameMusic);*/
+	
 }
 
 void AudioManager::PlayOptionSound()

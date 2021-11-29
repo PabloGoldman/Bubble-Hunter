@@ -195,7 +195,6 @@ void Gameplay::DrawPlayerPoints(Player* player, int x, int y, sf::RenderWindow* 
 	hud->DrawPoints(player->GetPoints(), x, y, fontSize, sf::Color::White, window);
 }
 
-
 void Gameplay::ResetData(Player* player)
 {
 	ResetPlayerData(player);
@@ -203,7 +202,7 @@ void Gameplay::ResetData(Player* player)
 
 void Gameplay::CheckPause()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
 		pause->SetInPause(!pause->GetInPause());
 	}
@@ -432,7 +431,7 @@ void Gameplay::SetPlayerPosition(Player* player, int posX, int posY)
 
 void Gameplay::DrawPlayer(Player* player, sf::RenderWindow* window)
 {
-	window->draw(player->GetRectangle());
+	window->draw(player->GetSprite());
 }
 
 

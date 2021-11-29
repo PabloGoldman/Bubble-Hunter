@@ -18,6 +18,11 @@ Player::Player(Arrow* arr[2])
 	speed = 15;
 	points = 0;
 
+	texture.loadFromFile("player.png");
+	sprite.setTexture(texture);
+	sprite.setScale(0.35, 0.35);
+	sprite.setPosition(0,0);
+
 	hasPowerUp = false;
 }
 
@@ -84,7 +89,7 @@ void Player::Input(sf::RenderWindow* window)
 
 void Player::Update()
 {
-
+	sprite.setPosition(rectangle.getPosition());
 }
 
 void Player::SetSpeed(int _speed)
@@ -122,4 +127,9 @@ void Player::SetRectanglePos(int posX, int posY)
 void Player::AddPoints(int _points)
 {
 	points += _points;
+}
+
+sf::Sprite Player::GetSprite()
+{
+	return sprite;
 }

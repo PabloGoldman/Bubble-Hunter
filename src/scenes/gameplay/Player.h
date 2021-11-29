@@ -9,14 +9,14 @@ class Player
 private:
 	Arrow* arrow[2];
 
+	sf::Texture texture;
+	sf::Sprite sprite;
 	sf::RectangleShape rectangle;
 	sf::Color color;
 	int speed;
 	int points;
 
 	bool hasPowerUp;
-	int actualArrows;
-
 
 public:
 	Player(Arrow* arr[totalArrows]);
@@ -38,6 +38,7 @@ public:
 	void SetPoints(int _points);
 	void SetRectanglePos(int posX, int posY);
 	void AddPoints(int _points);
+	sf::Sprite GetSprite();
 };
 
 
