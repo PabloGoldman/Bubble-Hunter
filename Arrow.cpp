@@ -63,7 +63,7 @@ void Arrow::Movement()
 	}
 	else
 	{
-		rectangle.setPosition(rectangle.getPosition().x, screenHeight);
+		rectangle.setPosition(rectangle.getPosition().x, screenHeight + 10);
 	}
 }
 

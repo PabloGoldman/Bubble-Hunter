@@ -65,7 +65,12 @@ public:
 	void CheckPlayerBallCollision();
 
 	void ResetGameplay();
+	void ChangeBallsDirection();
 
+	void CheckWinGame();
+	void RespawnBalls();
+	void AddBallsSpeed();
+	void ResetBallsData();
 
 	//bool Intersects(Arrow* rec, Ball* circle);
 

@@ -16,7 +16,7 @@ private:
 
 	bool inPause;
 
-	void CheckInput();
+	void CheckInput(sf::Event& event);
 	void DrawPauseMenu(sf::RenderWindow* window);
 	void Update();
 
@@ -34,5 +34,7 @@ public:
 	void SetMenuOption(OPTION _option);
 	void SetButtonsData();
 	void InitInPauseData();
+	void Input(sf::RenderWindow* window);
+	void DrawButton(Button _button[], const char text[], sf::RenderWindow* window);
 };
 

@@ -13,9 +13,9 @@ Player::Player(Arrow* arr[2])
 		arrow[i] = arr[i];
 	}
 
-	rectangle.setSize(sf::Vector2f(100, 100));
+	rectangle.setSize(sf::Vector2f(50, 50));
 	rectangle.setFillColor(sf::Color::Green);
-	speed = 10;
+	speed = 15;
 	points = 0;
 
 	hasPowerUp = false;

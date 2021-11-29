@@ -42,7 +42,7 @@ void InGamePause::SetSceneManager(SceneManager* sc)
 
 void InGamePause::InPause(sf::RenderWindow* window)
 {
-	CheckInput();
+	Input(window);
 	Update();
 	DrawPauseMenu(window);
 }
@@ -52,31 +52,44 @@ void InGamePause::SetMenuOption(OPTION _option)
 	option = _option;
 }
 
-void InGamePause::CheckInput()
+void InGamePause::CheckInput(sf::Event& event)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		if (option == OPTION::RESUME)
-			option = OPTION::QUIT;
-		else
-			option = OPTION::RESUME;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-	{
-		if (option == OPTION::RESUME)
-			SetInPause(false);
-		else
+		switch (option)
 		{
-			SetInPause(false);
-			SetMenuOption(OPTION::RESUME);
+		case OPTION::RESUME:
+			option = OPTION::QUIT;
+			break;
+		case OPTION::QUIT:
+			option = OPTION::RESUME;
+			break;
+		default:
+			break;
+		}
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+	{
+		switch (option)
+		{
+		case OPTION::RESUME:
+			sceneManager->SetSceneManager(Scene::GAME);
+			break;
+		case OPTION::QUIT:
 			sceneManager->SetSceneManager(Scene::MENU);
+			break;
+		default:
+			break;
 		}
 	}
 }
 
 void InGamePause::DrawPauseMenu(sf::RenderWindow* window)
 {
-	
+	DrawButton(resume, "PLAY AGAIN", window);
+	DrawButton(quit, "EXIT", window);
 }
 
 void InGamePause::Update()
@@ -85,30 +98,64 @@ void InGamePause::Update()
 	{
 	case OPTION::RESUME:
 		resume->SetActive(true);
-		quit->SetActive(false);
 		break;
 	case OPTION::QUIT:
-		resume->SetActive(false);
 		quit->SetActive(true);
 		break;
 	default:
 		break;
 	}
+
+	for (int i = 0; i < 2; i++)
+	{
+		if (i != (int)option)
+		{
+			resume->SetActive(false);
+			resume->SetColor(sf::Color::Red);
+		}
+		else
+		{
+			quit->SetActive(true);
+			quit->SetColor(sf::Color::Blue);
+		}
+	}
 }
 
 void InGamePause::SetButtonsData()
 {
-	resume->SetRectanglePos(screenWidth / 2 - 80, screenHeight / 2 - 10);
-	quit->SetRectanglePos(screenWidth / 2 - 80, screenHeight / 2 + 50);
+	resume->SetRectanglePos(screenWidth / 2 - 120, screenHeight / 2 - 80);
+	quit->SetRectanglePos(screenWidth / 2 - 120, screenHeight / 2 + 50);
 
-	quit->SetHeight(400);
-	quit->SetWidth(400);
+	quit->SetHeight(65);
+	quit->SetWidth(300);
 
-	resume->SetHeight(400);
-	resume->SetWidth(400);
+	resume->SetHeight(65);
+	resume->SetWidth(300);
 }
 
 void InGamePause::InitInPauseData()
 {
 	SetButtonsData();
 }
+
+void InGamePause::Input(sf::RenderWindow* window)
+{
+	sf::Event event;
+
+	while (window->pollEvent(event)) {
+		if (event.type == sf::Event::Closed) {
+			window->close();
+		}
+		if (event.type == sf::Event::KeyPressed)
+		{
+			CheckInput(event);
+		}
+	}
+}
+
+void InGamePause::DrawButton(Button _button[], const char text[], sf::RenderWindow* window)
+{
+	_button->DrawButton(_button->GetRectangle(), text, window);
+}
+
+

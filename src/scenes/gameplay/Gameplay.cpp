@@ -12,9 +12,17 @@ const int screenHeight = 450;
 const int fontSize = 40;
 const int pointsToWin = 10;
 
+const int totalBalls = 7;
+
 const int bigBalls = 1;
 const int mediumBalls = 2;
 const int smallBalls = 4;
+
+float initialSpeed = 0.04;
+
+int pointsAux = 0;
+
+float multiplier = 2;
 
 //const int totalArrows = 2;
 
@@ -80,6 +88,7 @@ Gameplay::~Gameplay()
 void Gameplay::InGame(sf::RenderWindow* window)
 {
 	Input(window);
+
 	if (!pause->GetInPause())
 	{
 		Update();
@@ -117,13 +126,17 @@ void Gameplay::Input(sf::RenderWindow* window)
 		if (event.type == sf::Event::KeyPressed)
 		{
 			CheckPause();
-			player->Input(window);
+			if (!pause->GetInPause())
+			{
+				player->Input(window);
+			}
 		}
 	}
 }
 
 void Gameplay::Update()
 {
+	CheckWinGame();
 	Collision();
 	SpawnBalls();
 
@@ -203,7 +216,7 @@ void Gameplay::ResetPlayerData(Player* player)
 
 void Gameplay::InitGameplay()
 {
-	SetPlayerData(player, screenWidth / 2 - 70, screenHeight / 2 + 100);
+	SetPlayerData(player, screenWidth / 2 - 70, screenHeight - player->GetRectangle().getSize().y);
 
 	SetInGamePauseData();
 
@@ -225,6 +238,7 @@ void Gameplay::Collision()
 	}
 
 	CheckPlayerBallCollision();
+	ChangeBallsDirection();
 }
 
 void Gameplay::CheckPlayerBallCollision()
@@ -258,7 +272,46 @@ void Gameplay::CheckPlayerBallCollision()
 void Gameplay::ResetGameplay()
 {
 	player->SetPoints(0);
+	pointsAux = 0;
+	ResetBallsData();
+	RespawnBalls();
+	scene->SetSceneManager(Scene::ENDGAME);
+}
 
+void Gameplay::ChangeBallsDirection()
+{
+	if (mediumBall[0]->GetSpeed() > 0 && mediumBall[0]->IsActive())
+	{
+		mediumBall[1]->ChangeSpeedDirection();
+	}
+
+	if (smallBall[0]->GetSpeed() > 0 && smallBall[0]->IsActive())
+	{
+		smallBall[1]->ChangeSpeedDirection();
+	}
+
+	if (smallBall[2]->GetSpeed() > 0 && smallBall[2]->IsActive())
+	{
+		smallBall[3]->ChangeSpeedDirection();
+	}
+
+}
+
+void Gameplay::CheckWinGame()
+{
+	if (player->GetPoints() > pointsAux)
+	{
+		if (player->GetPoints() % totalBalls == 0)
+		{
+			pointsAux = player->GetPoints();
+			AddBallsSpeed();
+			RespawnBalls();
+		}
+	}
+}
+
+void Gameplay::RespawnBalls()
+{
 	ball->SetActive(true);
 	ball->SetIfCollided(false);
 	ball->SetPosition(sf::Vector2f(ExternVars::window.x / 2 - 20, ExternVars::window.y / 2));
@@ -276,9 +329,38 @@ void Gameplay::ResetGameplay()
 	}
 }
 
+void Gameplay::AddBallsSpeed()
+{
+	ball->SetSpeed(ball->GetSpeed() * multiplier);
+
+	for (int i = 0; i < mediumBalls; i++)
+	{
+		mediumBall[i]->SetSpeed(mediumBall[i]->GetSpeed() * multiplier);
+	}
+
+	for (int i = 0; i < smallBalls; i++)
+	{
+		smallBall[i]->SetSpeed(smallBall[i]->GetSpeed() * multiplier);
+	}
+}
+
+void Gameplay::ResetBallsData()
+{
+	ball->SetSpeed(initialSpeed);
+
+	for (int i = 0; i < mediumBalls; i++)
+	{
+		mediumBall[i]->SetSpeed(initialSpeed);
+	}
+
+	for (int i = 0; i < smallBalls; i++)
+	{
+		smallBall[i]->SetSpeed(initialSpeed);
+	}
+}
+
 void Gameplay::SpawnBalls()
 {
-
 	if (ball->GetIfCollided())
 	{
 		for (int i = 0; i < mediumBalls; i++)

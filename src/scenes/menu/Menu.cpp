@@ -90,10 +90,10 @@ void Menu::InitMenuData()
 {
 	LoadTextures();
 
-	SetButtonsData(_button[0], screenWidth * 0.5 - 100, PlayButtonPosition, 250, 300);
-	SetButtonsData(_button[1], screenWidth * 0.5 - 100, OptionsButtonPosition, 250, 300);
-	SetButtonsData(_button[2], screenWidth * 0.5 - 100, CreditsButtonPosition, 250, 300);
-	SetButtonsData(_button[3], screenWidth * 0.5 - 100, ExitButtonPosition, 250, 300);
+	SetButtonsData(_button[0], screenWidth * 0.5 - 100, PlayButtonPosition, 65, 300);
+	SetButtonsData(_button[1], screenWidth * 0.5 - 100, OptionsButtonPosition, 65, 300);
+	SetButtonsData(_button[2], screenWidth * 0.5 - 100, CreditsButtonPosition, 65, 300);
+	SetButtonsData(_button[3], screenWidth * 0.5 - 100, ExitButtonPosition, 65, 300);
 	_button[1]->SetColor(sf::Color::Red);
 }
 
@@ -132,7 +132,7 @@ void Menu::DrawButton(Button _button[], const char text[], sf::RenderWindow* win
 
 void Menu::CheckOptionState(sf::Event& event)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		std::cout << "APRETASTE FLECHITA ABAJO\n";
 		switch (menuScene)
@@ -157,7 +157,7 @@ void Menu::CheckOptionState(sf::Event& event)
 			break;
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		std::cout << "APRETASTE FLECHITA ARRIBA\n";
 		switch (menuScene)
@@ -239,12 +239,12 @@ void Menu::SetButtonsToFalse()
 		if (i != (int)menuScene)
 		{
 			_button[i]->SetActive(false);
-			_button[i]->SetColor(sf::Color::Yellow);
+			_button[i]->SetColor(sf::Color::Blue);
 		}
 		else
 		{
 			_button[i]->SetActive(true);
-			_button[i]->SetColor(sf::Color::Cyan);
+			_button[i]->SetColor(sf::Color::Red);
 		}
 	}
 }

@@ -64,6 +64,7 @@ public:
 	BallSize GetBallSize();
 	bool GetIfCollided();
 	sf::CircleShape GetShape();
+	float GetSpeed();
 
 
 	void Move();
@@ -71,6 +72,7 @@ public:
 	void Collision();
 	void ChangeSpeedDirection();
 	void SetIfCollided(bool col);
+	void SetSpeed(float speed);
 
 };
 

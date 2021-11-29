@@ -105,6 +105,11 @@ sf::CircleShape Ball::GetShape()
 	return shape;
 }
 
+float Ball::GetSpeed()
+{
+	return VELOCITY.x;
+}
+
 void Ball::Move()
 {
 	if (active)
@@ -147,6 +152,11 @@ void Ball::ChangeSpeedDirection()
 void Ball::SetIfCollided(bool col)
 {
 	alreadyCollided = col;
+}
+
+void Ball::SetSpeed(float speed)
+{
+	VELOCITY.x = speed;
 }
 
 
