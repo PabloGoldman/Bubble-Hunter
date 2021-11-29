@@ -40,9 +40,9 @@ void InGamePause::SetSceneManager(SceneManager* sc)
 	sceneManager = sc;
 }
 
-void InGamePause::InPause(sf::RenderWindow* window)
+void InGamePause::InPause(sf::RenderWindow* window, sf::Event& event)
 {
-	Input(window);
+	Input(window, event);
 	Update();
 	DrawPauseMenu(window);
 }
@@ -138,10 +138,8 @@ void InGamePause::InitInPauseData()
 	SetButtonsData();
 }
 
-void InGamePause::Input(sf::RenderWindow* window)
+void InGamePause::Input(sf::RenderWindow* window, sf::Event& event)
 {
-	sf::Event event;
-
 	while (window->pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			window->close();

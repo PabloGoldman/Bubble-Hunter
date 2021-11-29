@@ -87,7 +87,11 @@ Gameplay::~Gameplay()
 
 void Gameplay::InGame(sf::RenderWindow* window)
 {
-	Input(window);
+	sf::Event event;
+
+	Input(window, event);
+
+	Draw(window);
 
 	if (!pause->GetInPause())
 	{
@@ -95,14 +99,13 @@ void Gameplay::InGame(sf::RenderWindow* window)
 	}
 	else
 	{
-		pause->InPause(window);
+		pause->InPause(window, event);
 		if (scene->GetScene() == Scene::MENU)
 		{
 			ResetData(player);
 		}
 	}
 	audioManager->PlayGameMusic();
-	Draw(window);
 }
 
 bool Gameplay::GetInPause()
@@ -115,10 +118,8 @@ void Gameplay::SetInPause(bool pause)
 	inPause = pause;
 }
 
-void Gameplay::Input(sf::RenderWindow* window)
+void Gameplay::Input(sf::RenderWindow* window, sf::Event& event)
 {
-	sf::Event event;
-
 	while (window->pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			window->close();

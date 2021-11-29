@@ -31,7 +31,7 @@ private:
 
 	bool inPause;
 
-	void Input(sf::RenderWindow* window);
+	void Input(sf::RenderWindow* window, sf::Event& event);
 	void Update();
 	void Draw(sf::RenderWindow* window);
 	void SetPlayerData(Player* player, int posX, int posY);

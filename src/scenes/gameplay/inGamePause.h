@@ -30,11 +30,11 @@ public:
 
 	void SetInPause(bool _inPause);
 	void SetSceneManager(SceneManager* sc);
-	void InPause(sf::RenderWindow* window);
+	void InPause(sf::RenderWindow* window, sf::Event& event);
 	void SetMenuOption(OPTION _option);
 	void SetButtonsData();
 	void InitInPauseData();
-	void Input(sf::RenderWindow* window);
+	void Input(sf::RenderWindow* window, sf::Event& event);
 	void DrawButton(Button _button[], const char text[], sf::RenderWindow* window);
 };
 

@@ -89,6 +89,7 @@ void EndGameScreen::CheckInput(sf::Event& event)
 			sceneManager->SetSceneManager(Scene::GAME);
 			break;
 		case ENDGAMEOPTION::QUIT:
+			option = ENDGAMEOPTION::PLAY;
 			sceneManager->SetSceneManager(Scene::MENU);
 			break;
 		default:
@@ -120,12 +121,12 @@ void EndGameScreen::Update()
 		if (i != (int)option)
 		{
 			_button[i]->SetActive(false);
-			_button[i]->SetColor(sf::Color::Red);
+			_button[i]->SetColor(sf::Color::Blue);
 		}
 		else
 		{
 			_button[i]->SetActive(true);
-			_button[i]->SetColor(sf::Color::Blue);
+			_button[i]->SetColor(sf::Color::Red);
 		}
 	}
 }
