@@ -17,6 +17,14 @@ void Credits::InitCredits()
 	background.setSize(Vector2f(ExternVars::window.x, ExternVars::window.y));
 	background.setPosition(Vector2f(0, 0));
 
+	title.setFont(ExternVars::font);
+	programmer1.setFont(ExternVars::font);
+	programmer2.setFont(ExternVars::font);
+
+	title.setString("CREDITS");
+	programmer1.setString("Programmer: GOLDMAN, Pablo");
+	programmer2.setString("Programmer: TELLO, Guido");
+
 	title.setCharacterSize(60);
 	programmer1.setCharacterSize(40);
 	programmer2.setCharacterSize(40);
@@ -25,17 +33,9 @@ void Credits::InitCredits()
 	programmer1.setFillColor(Color::White);
 	programmer2.setFillColor(Color::White);
 
-	title.setString("CREDITS");
-	programmer1.setString("Programmer: GOLDMAN, Pablo");
-	programmer2.setString("Programmer: TELLO, Guido");
-
-	title.setFont(ExternVars::font);
-	programmer1.setFont(ExternVars::font);
-	programmer2.setFont(ExternVars::font);
-
-	title.setPosition(Vector2f(ExternVars::window.x / 2 - title.getPosition().x / 2, ExternVars::window.y / 4));
-	programmer1.setPosition(Vector2f(ExternVars::window.x / 2 - title.getPosition().x / 2, ExternVars::window.y * 3 / 5));
-	programmer2.setPosition(Vector2f(ExternVars::window.x / 2 - title.getPosition().x / 2, ExternVars::window.y * 4 / 5));
+	title.setPosition(Vector2f(ExternVars::window.x *11/30, ExternVars::window.y / 11));
+	programmer1.setPosition(Vector2f(ExternVars::window.x / 5, ExternVars::window.y * 2 / 5));
+	programmer2.setPosition(Vector2f(ExternVars::window.x / 5, ExternVars::window.y * 3 / 5));
 
 }
 
