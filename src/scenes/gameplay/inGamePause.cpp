@@ -54,7 +54,7 @@ void InGamePause::SetMenuOption(OPTION _option)
 
 void InGamePause::CheckInput(sf::Event& event)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) ||
+	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		switch (option)
@@ -83,18 +83,20 @@ void InGamePause::CheckInput(sf::Event& event)
 		default:
 			break;
 		}
-	}
+	}*/
 }
 
 void InGamePause::DrawPauseMenu(sf::RenderWindow* window)
 {
-	DrawButton(resume, "PLAY AGAIN", window);
-	DrawButton(quit, "EXIT", window);
+	DrawButton(resume, "PAUSE", window);
+	//DrawButton(quit, "EXIT", window);
 }
 
 void InGamePause::Update()
 {
-	switch (option)
+	resume->SetColor(sf::Color::Red);
+
+	/*switch (option)
 	{
 	case OPTION::RESUME:
 		resume->SetActive(true);
@@ -104,9 +106,9 @@ void InGamePause::Update()
 		break;
 	default:
 		break;
-	}
+	}*/
 
-	for (int i = 0; i < 2; i++)
+	/*for (int i = 0; i < 2; i++)
 	{
 		if (i != (int)option)
 		{
@@ -118,19 +120,19 @@ void InGamePause::Update()
 			quit->SetActive(true);
 			quit->SetColor(sf::Color::Blue);
 		}
-	}
+	}*/
 }
 
 void InGamePause::SetButtonsData()
 {
-	resume->SetRectanglePos(screenWidth / 2 - 120, screenHeight / 2 - 80);
-	quit->SetRectanglePos(screenWidth / 2 - 120, screenHeight / 2 + 50);
+	resume->SetRectanglePos(screenWidth / 2 - 50, screenHeight / 2 - 50);
+	/*quit->SetRectanglePos(screenWidth / 2 - 120, screenHeight / 2 + 50);
 
 	quit->SetHeight(65);
-	quit->SetWidth(300);
+	quit->SetWidth(300);*/
 
 	resume->SetHeight(65);
-	resume->SetWidth(300);
+	resume->SetWidth(100);
 }
 
 void InGamePause::InitInPauseData()
@@ -140,7 +142,7 @@ void InGamePause::InitInPauseData()
 
 void InGamePause::Input(sf::RenderWindow* window, sf::Event& event)
 {
-	while (window->pollEvent(event)) {
+	/*while (window->pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			window->close();
 		}
@@ -148,7 +150,7 @@ void InGamePause::Input(sf::RenderWindow* window, sf::Event& event)
 		{
 			CheckInput(event);
 		}
-	}
+	}*/
 }
 
 void InGamePause::DrawButton(Button _button[], const char text[], sf::RenderWindow* window)
