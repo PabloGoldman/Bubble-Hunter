@@ -11,6 +11,13 @@ AudioManager::AudioManager()
 
 	menuMusic.openFromFile("MenuSong.wav");
 	gameMusic.openFromFile("GameSong.wav");
+
+	gameMusic.setLoop(true);
+	menuMusic.setLoop(true);
+
+	collisionSound.setVolume(10);
+	gameMusic.setVolume(10);
+	menuMusic.setVolume(10);
 }
 
 AudioManager::~AudioManager()
