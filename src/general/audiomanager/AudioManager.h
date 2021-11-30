@@ -4,6 +4,13 @@
 class AudioManager
 {
 private:
+	sf::SoundBuffer soundBuffer;
+	sf::Sound collisionSound;
+
+	sf::Music menuMusic;
+	sf::Music gameMusic;
+
+
 
 	bool menuMusicInited;
 	bool gameMusicInited;
