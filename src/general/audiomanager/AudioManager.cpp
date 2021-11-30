@@ -33,6 +33,7 @@ void AudioManager::PlayMenuMusic()
 {
 	if (!menuMusic.getStatus())
 	{
+		gameMusic.stop();
 		menuMusic.play();
 	}
 }
@@ -41,6 +42,7 @@ void AudioManager::PlayGameMusic()
 {
 	if (!gameMusic.getStatus())
 	{
+		menuMusic.stop();
 		gameMusic.play();
 	}
 }
