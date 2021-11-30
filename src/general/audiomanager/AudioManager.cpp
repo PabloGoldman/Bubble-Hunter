@@ -39,11 +39,17 @@ void AudioManager::PlayMenuMusic()
 
 void AudioManager::PlayGameMusic()
 {
-	gameMusic.play();
+	if (!gameMusic.getStatus())
+	{
+		gameMusic.play();
+	}
 }
 
 void AudioManager::PlayOptionSound()
 {
-	collisionSound.play();
+	if (!collisionSound.getStatus())
+	{
+		collisionSound.play();
+	}
 }
 
